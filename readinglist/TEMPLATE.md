@@ -6,7 +6,7 @@
 
 | Alias | Title | Source | Institution | Benchmarking | ⭐ | Figure 1 | Summary |
 |---|---|---|---|---|---:|---|---|
-| Paper-Alias | Paper Title | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | Org / University | Benchmark1, Benchmark2 | 0.0-5.0 | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | 1) 核心洞察；2) 方法亮点；3) 结果与局限 |
+| Paper-Alias | Paper Title | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | Org / University | Benchmark1, Benchmark2 | 0.0-5.0 | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | 核心发现 |
 
 ## CSV 表头模板（与上表一致）
 
@@ -20,4 +20,4 @@ Alias,Title,Source,Institution,Benchmarking,⭐,Framework,Summary
 
 | Alias | Title | Source | Institution | Benchmarking | ⭐ | Figure 1 | Summary |
 |---|---|---|---|---|---:|---|---|
-| Evo-Memory | Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | Google DeepMind | MMLU-Pro, GPQA-Diamond, AIME24/25, ToolBench, AlfWorld, BabyAI, ScienceWorld | 4.5 | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | 提出测试时“自进化记忆”；ExpRAG做经验检索，ReMem做 think-act-memory refine 循环；多任务下显著优于仅会话回忆。 |
+| Evo-Memory | Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | Google DeepMind | MMLU-Pro, GPQA-Diamond, AIME24/25, ToolBench, AlfWorld, BabyAI, ScienceWorld | 4.5 | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | LLM Agent 的记忆不应只是"回忆过去说了什么"，而应能在部署过程中持续从经验中学习并自我演化，实验证明这种自演化记忆（尤其在多轮任务中）能大幅提升表现和效率。 |
