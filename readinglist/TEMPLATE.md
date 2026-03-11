@@ -17,6 +17,10 @@ Alias,NoteLink,Title,Source,Institution,Benchmarking,⭐,Figure1,Summary
 > 说明：
 > - `Alias` 在 Markdown 中建议写成 `[Alias](相对路径)`，直接跳到阅读报告。
 > - `Source` 建议写成 `[arxiv xxxx](url)`，便于展示简洁超链接。
+> - `Figure 1` 必须显式填写：
+>   1) 优先 `https://arxiv.org/html/<id-version>/x1.png`；
+>   2) 若不可用，尝试 HTML 中首个论文插图资源（如 `figures/...`）；
+>   3) 若仍不可得，写 `N/A（arXiv 未提供可用 HTML Figure 资源）`。
 
 ## 示例（参考 Evo-Memory）
 
