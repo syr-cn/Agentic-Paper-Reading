@@ -1,10 +1,17 @@
 # papers/
 
-Store paper source records here.
+Store candidate paper records and source captures here.
 
-## Suggested layout
-- `papers/2026-03-11.md` (daily capture)
-- `papers/icml-2026/` (venue-specific batches)
-- `papers/hf-daily/` (HuggingFace daily picks)
+## Suggested Layout
+- `papers/YYYY-MM-DD.md` — daily captured candidates
+- `papers/hf-daily/YYYY-MM-DD.md` — HuggingFace daily picks
+- `papers/arxiv/YYYY-MM-DD.md` — arXiv captures
+- `papers/venues/<venue-year>/` — conference/venue-specific batches
 
-Each entry should include title, link, tags, and short reason for selection.
+## Entry Format (recommended)
+- Title
+- Link
+- Source (arXiv / HF / venue)
+- Tags
+- 1-2 line selection reason
+- Triage score (optional)

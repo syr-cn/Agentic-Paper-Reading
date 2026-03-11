@@ -1,6 +1,13 @@
 # notes/
 
-Structured reading notes, one file per paper.
+Structured deep-reading notes (one file per paper).
+
+## Naming
+- `YYYY-MM-DD_short-title.md`
+
+## Minimum bar
+Each note should be useful for future retrieval and project transfer,
+not just a generic summary.
 
 ## Template
-Copy `notes/TEMPLATE.md` when starting a new paper note.
+Start from `notes/TEMPLATE.md`.
