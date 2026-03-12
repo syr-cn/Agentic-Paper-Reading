@@ -1,4 +1,4 @@
-# MemAtlas: SYR's Memory Paper Reading
+# Agentic Paper Reading
 
 > A research notebook for **agent memory / continual learning / retrieval reasoning** with dashboard-style navigation.
 
