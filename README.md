@@ -3,20 +3,20 @@
 > A research notebook for **agent memory / continual learning / retrieval reasoning** with dashboard-style navigation.
 
 <p align="left">
-  <img alt="Notes" src="https://img.shields.io/badge/Total%20Notes-14-4c1?style=flat-square" />
+  <img alt="Notes" src="https://img.shields.io/badge/Total%20Notes-18-4c1?style=flat-square" />
   <img alt="Reading Lists" src="https://img.shields.io/badge/Reading%20Lists-5-06b6d4?style=flat-square" />
-  <img alt="This Month" src="https://img.shields.io/badge/2026--03-14%20notes-7c3aed?style=flat-square" />
-  <img alt="Updated" src="https://img.shields.io/badge/Last%20Updated-2026-03-12-111827?style=flat-square" />
+  <img alt="This Month" src="https://img.shields.io/badge/2026--03-18%20notes-7c3aed?style=flat-square" />
+  <img alt="Updated" src="https://img.shields.io/badge/Last%20Updated-2026-03-13-111827?style=flat-square" />
 </p>
 
 ## 📊 Project Snapshot
 
 | Metric | Value |
 |---|---:|
-| Total notes | **14** |
+| Total notes | **18** |
 | Total reading lists | **5** |
-| Notes added in 2026-03 | **14** |
-| Last updated | **2026-03-12** |
+| Notes added in 2026-03 | **18** |
+| Last updated | **2026-03-13** |
 
 ---
 
@@ -24,7 +24,7 @@
 
 | List | Focus | #Notes | Last Update | Status |
 |---|---|---:|---|---|
-| [Agent Topic Reading List](readinglist/agent-topic.md) | Deep read on selected Agent papers | 2 | 2026-03-12 | OK |
+| [Agent Topic Reading List](readinglist/agent-topic.md) | Deep read on selected Agent papers | 6 | 2026-03-13 | OK |
 | [Agentic Skills Reading List](readinglist/agentic-skills.md) | Skills as Agent capability (survey, methods, benchmark) | 7 | 2026-03-11 | OK |
 | [Blog Topic Reading List](readinglist/blog-topic.md) | High-signal blog analyses mapped to agent research | 4 | 2026-03-12 | OK |
 | [Later Queue](readinglist/later.md) | Backlog queue | 0 | 2026-03-11 | OK |
@@ -38,13 +38,13 @@
 
 | Year | #Notes |
 |---|---:|
-| 2026 | 14 |
+| 2026 | 18 |
 
 ### By Month
 
 | Month | #Notes |
 |---|---:|
-| 2026-03 | 14 |
+| 2026-03 | 18 |
 
 ---
 
@@ -52,16 +52,16 @@
 
 | Date | Alias | Note |
 |---|---|---|
+| 2026-03-13 | Auto Rl Env | [papers/2026-03-13_auto-rl-env.md](papers/2026-03-13_auto-rl-env.md) |
+| 2026-03-13 | Reasoning Judge | [papers/2026-03-13_reasoning-judge.md](papers/2026-03-13_reasoning-judge.md) |
+| 2026-03-13 | Madqa | [papers/2026-03-13_madqa.md](papers/2026-03-13_madqa.md) |
+| 2026-03-13 | Dive | [papers/2026-03-13_dive.md](papers/2026-03-13_dive.md) |
 | 2026-03-12 | Retroagent | [papers/2026-03-12_retroagent.md](papers/2026-03-12_retroagent.md) |
 | 2026-03-12 | Icrl Tool Use | [papers/2026-03-12_icrl-tool-use.md](papers/2026-03-12_icrl-tool-use.md) |
 | 2026-03-12 | 01Me User Memory Cognition | [papers/2026-03-12_01me-user-memory-cognition.md](papers/2026-03-12_01me-user-memory-cognition.md) |
 | 2026-03-12 | 01Me Sovereign Agents | [papers/2026-03-12_01me-sovereign-agents.md](papers/2026-03-12_01me-sovereign-agents.md) |
 | 2026-03-12 | 01Me Digital Worker | [papers/2026-03-12_01me-digital-worker.md](papers/2026-03-12_01me-digital-worker.md) |
 | 2026-03-12 | 01Me Agent Continual Learning | [papers/2026-03-12_01me-agent-continual-learning.md](papers/2026-03-12_01me-agent-continual-learning.md) |
-| 2026-03-11 | Sok Agentic Skills | [papers/2026-03-11_sok-agentic-skills.md](papers/2026-03-11_sok-agentic-skills.md) |
-| 2026-03-11 | Skillsbench | [papers/2026-03-11_skillsbench.md](papers/2026-03-11_skillsbench.md) |
-| 2026-03-11 | Skillrl | [papers/2026-03-11_skillrl.md](papers/2026-03-11_skillrl.md) |
-| 2026-03-11 | Skillorchestra | [papers/2026-03-11_skillorchestra.md](papers/2026-03-11_skillorchestra.md) |
 
 
 ---
