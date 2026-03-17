@@ -12,7 +12,7 @@
   - HTML: https://arxiv.org/html/2603.13134
   - Code: https://github.com/Skylanding/BiCC
 - **Tags:** GRPO, RLHF, reasoning-model, contrastive-optimization, variance-reduction
-- **My rating (0-5):** 4.4
+- **My rating (1-3):** 4.4
 - **Read depth:** normal
 
 ## 1) TL;DR

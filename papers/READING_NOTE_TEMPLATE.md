@@ -13,7 +13,7 @@
   - PDF: 
   - Code: 
 - **Tags:** 
-- **My rating (0-5):** 
+- **My rating (1-3):** 
 - **Read depth:** skim / normal / deep
 
 ## 1) TL;DR (3-6 bullets)

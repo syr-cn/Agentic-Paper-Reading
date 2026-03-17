@@ -12,7 +12,7 @@
   - HTML: https://arxiv.org/html/2603.11896
   - Code: https://github.com/wl666hhh/Think_While_Watching/
 - **Tags:** streaming-video, multimodal-agent, online-reasoning, memory, long-context
-- **My rating (0-5):** 4.6
+- **My rating (1-3):** 4.6
 - **Read depth:** normal
 
 ## 1) TL;DR
