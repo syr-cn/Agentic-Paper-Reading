@@ -11,7 +11,7 @@
   - PDF: https://arxiv.org/pdf/2603.12246
   - HTML: https://arxiv.org/html/2603.12246
 - **Tags:** llm-as-judge, reasoning-model, reward-hacking, RLHF, non-verifiable
-- **My rating (1-3):** 4.6
+- **My rating (★☆☆ / ★★☆ / ★★★):** 4.6
 - **Read depth:** deep
 
 ## 1) TL;DR

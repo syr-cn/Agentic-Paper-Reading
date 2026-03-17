@@ -8,7 +8,7 @@
 - **Date:** 2025-10
 - **Link:** https://01.me/en/2025/10/agent-continual-learning/
 - **Tags:** continual-learning, agent-vs-reasoner, world-model, dual-lora, realtime-agent
-- **My rating (1-3):** 4.6
+- **My rating (★☆☆ / ★★☆ / ★★★):** 4.6
 - **Read depth:** normal
 
 ## 1) TL;DR

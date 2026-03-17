@@ -6,7 +6,7 @@
 
 | Alias (link to note) | Title | Source | Institution | Benchmarking | ⭐ | Figure 1 | Summary |
 |---|---|---|---|---|---:|---|---|
-| [Paper-Alias](../papers/YYYY-MM-DD_short-title.md) | Paper Title | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | First: Org A; High-impact: Org B | Benchmark1, Benchmark2 | 1-3 | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | 核心发现 |
+| [Paper-Alias](../papers/YYYY-MM-DD_short-title.md) | Paper Title | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | First: Org A; High-impact: Org B | Benchmark1, Benchmark2 | ★☆☆ / ★★☆ / ★★★ | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | 核心发现 |
 
 ## CSV 表头模板（与上表一致）
 
@@ -28,4 +28,4 @@ Alias,NoteLink,Title,Source,Institution,Benchmarking,⭐,Figure1,Summary
 
 | Alias (link to note) | Title | Source | Institution | Benchmarking | ⭐ | Figure 1 | Summary |
 |---|---|---|---|---|---:|---|---|
-| [Evo-Memory](../papers/2026-03-11_evo-memory.md) | Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | First: DeepMind; High-impact: DeepMind | MMLU-Pro, GPQA-Diamond, AIME24/25, ToolBench, AlfWorld, BabyAI, ScienceWorld | 2 | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | LLM Agent 的记忆不应只是“回忆过去说了什么”，而应能在部署过程中持续从经验中学习并自我演化，实验证明这种自演化记忆（尤其在多轮任务中）能大幅提升表现和效率。 |
+| [Evo-Memory](../papers/2026-03-11_evo-memory.md) | Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | First: DeepMind; High-impact: DeepMind | MMLU-Pro, GPQA-Diamond, AIME24/25, ToolBench, AlfWorld, BabyAI, ScienceWorld | ★★☆ | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | LLM Agent 的记忆不应只是“回忆过去说了什么”，而应能在部署过程中持续从经验中学习并自我演化，实验证明这种自演化记忆（尤其在多轮任务中）能大幅提升表现和效率。 |

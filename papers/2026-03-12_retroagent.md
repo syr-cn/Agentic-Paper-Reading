@@ -12,7 +12,7 @@
   - PDF: https://arxiv.org/pdf/2603.08561
   - Code: https://github.com/zhangxy-2019/RetroAgent
 - **Tags:** agent-rl, self-reflection, intrinsic-reward, memory-retrieval, continual-adaptation
-- **My rating (1-3):** 4.8
+- **My rating (★☆☆ / ★★☆ / ★★★):** 4.8
 - **Read depth:** deep
 
 ## 1) TL;DR
