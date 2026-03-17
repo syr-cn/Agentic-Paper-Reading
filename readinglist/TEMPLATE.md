@@ -17,7 +17,7 @@ Alias,NoteLink,Title,Source,Institution,Benchmarking,⭐,Figure1,Summary
 > 说明：
 > - `Alias` 在 Markdown 中建议写成 `[Alias](相对路径)`，直接跳到阅读报告。
 > - `Source` 建议写成 `[arxiv xxxx](url)`，便于展示简洁超链接。
-> - `Institution` 规则：若为多机构，写成 `First: <第一机构>; High-impact: <你判断影响力最高机构>`。
+> - `Institution` 规则：若为多机构，写成 `First: <第一机构>; High-impact: <你判断影响力最高机构>`；若 HTML 缺失机构信息，必须继续在 PDF 中查找。
 > - `Figure 1` 必须显式填写：
 >   1) 优先 `https://arxiv.org/html/<id-version>/x1.png`；
 >   2) 若不可用，尝试 HTML 中首个论文插图资源（如 `figures/...`）；
