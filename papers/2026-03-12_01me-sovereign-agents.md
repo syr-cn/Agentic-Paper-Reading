@@ -8,7 +8,7 @@
 - **Date:** 2026-01
 - **Link:** https://01.me/en/2026/01/clawdbot-openclaw-analysis/
 - **Tags:** sovereign-agent, local-first, memory-system, multi-tool-agent, security
-- **My rating (★☆☆ / ★★☆ / ★★★):** 4.8
+- **My rating (★☆☆☆☆~★★★★★):** ★★★★★ (5/5)
 - **Read depth:** normal
 
 ## 1) TL;DR

@@ -3,7 +3,7 @@
 ## 0) Metadata
 - **Title:** When Right Meets Wrong: Bilateral Context Conditioning with Reward-Confidence Correction for GRPO
 - **Alias:** BiCC-RCC
-- **Authors / Org:** Yu Li, Tian Lan, Zhengling Qi（机构信息在 arXiv 摘要页未直接给出）
+- **Authors / Org:** Yu Li, Tian Lan, Zhengling Qi（已检查 arXiv HTML/PDF，未显式给出机构）
 - **Venue / Status:** arXiv 2603.13134v1
 - **Date:** 2026-03
 - **Links:**
@@ -12,7 +12,7 @@
   - HTML: https://arxiv.org/html/2603.13134
   - Code: https://github.com/Skylanding/BiCC
 - **Tags:** GRPO, RLHF, reasoning-model, contrastive-optimization, variance-reduction
-- **My rating (★☆☆ / ★★☆ / ★★★):** 4.4
+- **My rating (★☆☆☆☆~★★★★★):** ★★★★☆ (4/5)
 - **Read depth:** normal
 
 ## 1) TL;DR

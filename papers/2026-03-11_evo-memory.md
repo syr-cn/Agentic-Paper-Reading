@@ -10,7 +10,7 @@
   - HTML: https://arxiv.org/html/2511.20857v1
   - PDF: https://arxiv.org/pdf/2511.20857
 - **Tags:** agent-memory, test-time-learning, continual-adaptation, benchmark, ReAct
-- **My rating (★☆☆ / ★★☆ / ★★★):** 4.5
+- **My rating (★☆☆☆☆~★★★★★):** ★★★★★ (5/5)
 - **Read depth:** normal
 
 ## 1) TL;DR (3-6 bullets)

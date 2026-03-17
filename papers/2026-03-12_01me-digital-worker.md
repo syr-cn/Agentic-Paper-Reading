@@ -8,7 +8,7 @@
 - **Date:** 2026-03-09
 - **Link:** https://01.me/en/2026/03/digital-worker/
 - **Tags:** digital-labor, ai-economics, inference-cost, infra-bottleneck, agent-economy
-- **My rating (★☆☆ / ★★☆ / ★★★):** 4.3
+- **My rating (★☆☆☆☆~★★★★★):** ★★★★☆ (4/5)
 - **Read depth:** deep
 
 ## 1) TL;DR
