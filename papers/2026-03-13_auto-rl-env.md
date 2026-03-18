@@ -11,7 +11,7 @@
   - PDF: https://arxiv.org/pdf/2603.12145
   - HTML: https://arxiv.org/html/2603.12145
 - **Tags:** rl-infra, environment-generation, code-agent, verification, simulator-performance
-- **My rating (★☆☆☆☆~★★★★★):** ★★★☆☆ (3/5)
+- **My rating:** ★★★☆☆
 - **Read depth:** deep
 
 ## 1) TL;DR

@@ -9,7 +9,7 @@
   - PDF: https://arxiv.org/pdf/2602.19672
   - Code: https://github.com/jiayuww/SkillOrchestra
 - **Read depth:** skim
-- **My rating (★☆☆☆☆~★★★★★):** ★★★☆☆ (3/5)
+- **My rating:** ★★★☆☆
 
 ## 1) TL;DR
 - 关注 compound AI 的路由编排，反对粗粒度 query-level routing。

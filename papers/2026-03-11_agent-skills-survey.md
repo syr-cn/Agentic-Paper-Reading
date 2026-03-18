@@ -9,7 +9,7 @@
   - PDF: https://arxiv.org/pdf/2602.12430
   - Repo: https://github.com/scienceaix/agentskills
 - **Read depth:** skim
-- **My rating (★☆☆☆☆~★★★★★):** ★★★☆☆ (3/5)
+- **My rating:** ★★★☆☆
 
 ## 1) TL;DR
 - 综述技能化 agent 的架构、获取方式、规模化部署和安全治理。
