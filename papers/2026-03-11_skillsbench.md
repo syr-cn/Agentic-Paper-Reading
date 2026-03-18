@@ -8,6 +8,7 @@
   - HTML: https://arxiv.org/html/2602.12670v2
   - PDF: https://arxiv.org/pdf/2602.12670
 - **Read depth:** skim
+- **My rating (★☆☆☆☆~★★★★★):** ★★☆☆☆ (2/5)
 
 ## 1) TL;DR
 - 提出 SkillsBench：86 个任务、11 个领域，含 curated skills 与 deterministic verifiers。

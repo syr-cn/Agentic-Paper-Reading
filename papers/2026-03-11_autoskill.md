@@ -8,6 +8,7 @@
   - HTML: https://arxiv.org/html/2603.01145v2
   - PDF: https://arxiv.org/pdf/2603.01145
 - **Read depth:** skim
+- **My rating (★☆☆☆☆~★★★★★):** ★★★☆☆ (3/5)
 
 ## 1) TL;DR
 - 将用户交互经验抽象为技能，支持持续自演化与跨会话复用。

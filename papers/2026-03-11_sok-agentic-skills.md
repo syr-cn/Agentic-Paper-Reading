@@ -8,6 +8,7 @@
   - HTML: https://arxiv.org/html/2602.20867v1
   - PDF: https://arxiv.org/pdf/2602.20867
 - **Read depth:** skim
+- **My rating (★☆☆☆☆~★★★★★):** ★★★☆☆ (3/5)
 
 ## 1) TL;DR
 - 系统化梳理 agentic skills 全生命周期：发现、练习、蒸馏、存储、组合、评测、更新。

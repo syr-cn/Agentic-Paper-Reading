@@ -12,7 +12,7 @@
   - HTML: N/A（arXiv 未提供 HTML 版本）
   - Code: https://github.com/applese233/ICRL
 - **Tags:** tool-use, reinforcement-learning, in-context-learning, search-agent, SFT-free
-- **My rating (★☆☆☆☆~★★★★★):** ★★★★★ (5/5)
+- **My rating (★☆☆☆☆~★★★★★):** ★★★★☆ (4/5)
 - **Read depth:** deep
 
 ## 1) TL;DR
