@@ -3,7 +3,7 @@
 ## 0) Metadata
 - **Title:** Think While Watching: Online Streaming Segment-Level Memory for Multi-Turn Video Reasoning in Multimodal Large Language Models
 - **Alias:** Think-While-Watching
-- **Authors / Org:** Lu Wang, Zhuoran Jin, Yupu Hao, Yubo Chen, Kang Liu, Yulong Ao, Jun Zhao；First: Institute of Automation, Chinese Academy of Sciences; High-impact: BAAI
+- **Authors / Org:** Lu Wang, Zhuoran Jin, Yupu Hao, Yubo Chen, Kang Liu, Yulong Ao, Jun Zhao；First: CASIA; High-impact: BAAI
 - **Venue / Status:** arXiv 2603.11896v1
 - **Date:** 2026-03
 - **Links:**
@@ -14,66 +14,31 @@
 - **Tags:** streaming-video, multimodal-agent, online-reasoning, memory, long-context
 - **My rating:** ★★★★☆
 - **Read depth:** normal
+- **Scoring (1+2+2):** 基础 1 + 质量 2 + Observation 1 = 4
 
-## 1) TL;DR
-- 目标是解决 MLLM 在**连续视频流 + 多轮问答**下的在线推理问题。
-- 现有 streaming 方法常用“感知-生成交替”范式，导致不能并行、且随时间出现记忆衰减。
-- 论文提出 **memory-anchored segment-level streaming** 框架，并用 segment-level causal mask + streaming positional encoding 保因果性。
-- 推理阶段通过 watch/thinking pipeline overlap 提升吞吐。
-- 基于 Qwen3-VL，在 StreamingBench +2.6%，OVO-Bench +3.79%，多轮设置下输出 token 降低 56%。
+## 1) Core Insight
+- 真正有意思的不是“流式视频更快了”，而是它把**记忆单元从 frame-level 提升到 segment-level**，并在因果约束下实现“边看边想”的并行推理，缓解了多轮交互里的记忆衰减。
 
-## 2) Problem & Motivation
-- 以前方法的核心缺口：在线流式场景中长期依赖建模弱，且多轮交互效率低。
-- 这篇 paper 想解决什么：维持连续段级记忆并提升多轮视频推理质量/效率。
-- 为什么现在值得做：实时多模态 agent（监控、助手、机器人）对在线处理和长时记忆需求强。
+## 2) Interesting Observations
+- **Observation 1（效率）**：在多轮设置里，输出 token 可降约 56%，说明方法不仅增准，还显著减少无效推理开销。
+- **Observation 2（性能）**：StreamingBench +2.6%、OVO-Bench +3.79%，增益不是极端大，但在 streaming 任务里属于稳定可复现实用收益。
+- **Observation 3（系统）**：perception/reasoning overlap 的 pipeline 设计，对线上实时 agent 的 latency profile 很关键。
 
-## 3) Method (结构化)
-### 3.1 Setting / Formulation
-- 连续到达的视频片段 + 多轮问题，要求严格因果，不可偷看未来帧。
+## 3) Method
+- 段级在线记忆锚定（segment-level memory anchoring）
+- streaming causal mask + streaming positional encoding（保证严格因果）
+- watch/thinking overlap pipeline（提高吞吐）
 
-### 3.2 Main Components
-- Component A: 段级记忆锚定（segment-level memory anchoring）。
-- Component B: streaming causal mask + streaming positional encoding。
-- Component C: 推理时 perception / reasoning overlap pipeline。
+## 4) Evidence & Limitations
+- 证据：在两类 streaming benchmark 的单轮与多轮协议下均有收益。
+- 限制：超长视频和高帧率场景下的资源成本曲线仍需更多公开 profile。
 
-### 3.3 What is actually new?
-- 相比最强相关工作，新增点：在线段级记忆机制与“边看边想”的并行推理设计。
-- 可能只是 engineering 的部分：attention backend 的自适应选择。
+## 5) Why It Matters for Your Work
+- 你做多模态记忆系统时，最痛点是“在线长程依赖崩掉”；这篇提供了一个可直接借鉴的**段级记忆抽象**。
 
-## 4) Experiments & Evidence
-### 4.1 Benchmarks / Tasks
-- StreamingBench, OVO-Bench；单轮与多轮 streaming 协议。
+## 6) Actionable Next Step
+- 把你现有视频/轨迹记忆模块改成 segment-level 索引做 A/B。
+- 单独测三项：正确率、延迟、token开销（尤其多轮）。
 
-### 4.2 Main Results (with concrete numbers)
-- 单轮：StreamingBench +2.6%，OVO-Bench +3.79%。
-- 多轮：性能维持同时输出 token -56%。
-
-### 4.3 Ablation / Analysis
-- 关键应看：去掉段级记忆、去掉流式 mask、去掉并行 pipeline 的退化幅度。
-
-### 4.4 Failure / Limitation
-- 对高帧率、超长时长视频的显存/延迟成本仍可能较高。
-
-## 5) My Technical Take
-### 5.1 What I believe
-- 这篇和你的多模态 agent + 长程记忆兴趣高度对齐，尤其是“在线记忆不坍塌”这一点。
-
-### 5.2 What I doubt
-- 目前提升幅度不错，但跨数据域稳健性和长时漂移修复策略还需正文证据。
-
-### 5.3 Transfer to our projects
-- 可直接迁移：segment-level memory abstraction + 因果 mask 设计。
-- 需要改造后迁移：与现有检索/记忆模块统一接口。
-- 暂不建议投入：端侧资源非常受限场景。
-
-## 6) Repro Checklist
-- [x] 任务定义清晰
-- [ ] 评测协议可复现（需正文细节）
-- [ ] baseline 公平（需正文细节）
-- [ ] 资源开销可接受（需真实 profile）
-- [x] 代码/数据可得（代码已给）
-
-## 7) Next Actions (for me)
-- [ ] 拉代码看 streaming positional encoding 实现。
-- [ ] 提取多轮 benchmark 的误差类型。
-- [ ] 对比你现有视频记忆策略的可替换点。
+## 7) Why not higher score
+- 不是更高分的原因：observation 还偏系统工程层，机制性 failure 分析不够深入。
