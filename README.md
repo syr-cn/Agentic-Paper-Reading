@@ -79,3 +79,31 @@
 - Keep this dashboard updated whenever new notes or reading lists are added.
 - Ensure each reading list alias points to an existing note file.
 - Keep metrics lightweight, readable, and decision-oriented.
+
+
+## 🧱 Reading Pipeline Standard (Insight-first)
+
+From 2026-03-18 onward, all paper notes and reading list summaries follow this pipeline:
+
+1. **Source extraction priority**
+   - Prefer arXiv HTML for structure + figure links.
+   - If HTML unavailable, fallback to arXiv source (`e-print`) for LaTeX sections and figure files.
+
+2. **Figure policy**
+   - Prefer direct arXiv HTML figure links.
+   - If HTML unavailable, localize source figures to `assets/<paper-alias>/`.
+
+3. **Main result table policy**
+   - Must include concrete numeric comparison (baseline / proposed / delta).
+   - Avoid vague claims without numbers.
+
+4. **Analysis writing policy**
+   - Use `现象 + 解释` format for every analysis item.
+   - Add `【标注】` only when inserting personal interpretation or disagreement.
+
+5. **Scoring policy (1+2+2)**
+   - Base 1 + Quality (0~2) + Observation (0~2)
+   - Always explain "why not higher score".
+
+6. **Sync policy**
+   - Updating a paper note requires syncing corresponding reading list summary style.
