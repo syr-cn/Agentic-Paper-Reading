@@ -1,6 +1,6 @@
 # AutoSkill 阅读笔记
 
-## 0) Metadata
+## 0 Metadata
 - **Title:** Experience-Driven Lifelong Learning via Skill Self-Evolution
 - **Alias:** AutoSkill
 - **Authors / Org:** Yutao Yang*, Junsong Li*, Qianjun Pan*, Bihao Zhan, Yuxuan Cai, Lin Du, Jie Zhou†, Kai Chen†, Qin Chen, Xin Li, Bo Zhang, Liang He（ECNU + Shanghai AI Lab）
@@ -15,10 +15,10 @@
 - **Read depth:** deep
 - **Scoring (1+2+2):** 基础 1 + 质量 1 + Observation 1 = 3
 
-## 1) 一句话 Why-read（必填）
+## 1 一句话 Why-read
 - **Key claim/contribution + key observation：** 将“长期记忆”从文本片段提升为可版本化、可复用的技能工件（SKILL.md），以 training-free 方式实现跨会话个性化持续演化。
 
-## 2) CRGP 拆解（必填）
+## 2 CRGP
 ### C — Context
 - 长期个性化 agent 的核心问题不是“记住更多上下文”，而是“如何沉淀可复用行为模式”。
 
@@ -34,11 +34,13 @@
   - 后台循环：技能抽取 → 邻域检索 → judge（add/merge/discard）→ merge 版本递增；
   - 关键约束：抽取证据优先来自用户 query，降低模型自回声污染。
 
-## 3) Figure 区（至少 1 张）
+## 3 Figure 区
 - Figure 2（SkillBank 总体统计，N=1858）
 - 论文链接（可定位图表）：https://arxiv.org/pdf/2603.01145
 
-## 4) Experiments（必须含具体数字）
+## 4 Experiments
+### 4.1 Experimental setup
+### 4.1 Experimental setup
 ### 4.1 Experimental setup
 - **Training setting:** training-free（不更新LLM参数）
 - **Data:** WildChat-1M，筛选 >8 turns
@@ -71,17 +73,38 @@
 - 任务级指标（成功率/满意度/长期一致性）：**原文未给出可提取数字**。
 - 关键消融（去掉 rewrite/judge/merge）：**原文未给出可提取数字**。
 
-## 5) Why it matters for our work
+### 4.2 Main result table
+| Setting | Baseline | Proposed | Delta |
+|---|---:|---:|---:|
+| 原文摘要 | 原文未给出可提取数字 | 原文未给出可提取数字 | 原文未给出可提取数字 |
+
+### 4.3 Analysis
+- **现象：** 待补证据。
+  **解释（作者）：** 待补证据。
+  **【标注】（我的判断，可选）：** 待补证据。
+
+### 4.2 Main result table
+| Setting | Baseline | Proposed | Delta |
+|---|---:|---:|---:|
+| 原文摘要 | 原文未给出可提取数字 | 原文未给出可提取数字 | 原文未给出可提取数字 |
+
+### 4.3 Analysis
+- **现象：** 待补证据。
+  **解释（作者）：** 待补证据。
+  **【标注】（我的判断，可选）：** 待补证据。
+
+## 5 Why it matters for our work
 - **Agent memory:** 把记忆对象化为“行为技能资产”，更适合长期可维护系统。  
 - **Long-context:** 通过技能压缩历史，避免单纯拉长上下文带来的噪声和成本。  
 - **Multimodal RL（迁移潜力）：** 可把 tool/GUI/vision 轨迹进一步技能化，形成可解释 options 库。
 
-## 6) Actionable next step
+## 6 Actionable next step
 - [ ] 先做 training-free sidecar（rewrite + retrieve + async extract）接入当前 agent。
 - [ ] 做 A/B：AutoSkill 风格技能库 vs 纯 summary-memory/RAG-memory。
 - [ ] 设计多模态技能 schema（trigger / constraints / procedure / failure patterns）。
 
-## 7) 评分解释（必填）
+## 7 评分解释
+- 维持原评分倾向，不做无根据上调。
 - **质量分 1/2：** 系统完整且工程可落地，但缺强基线和任务级量化。  
 - **Observation 分 1/2：** 技能工件化视角有价值，但反直觉证据仍偏弱。  
 - **总分 3/5：** 工程启发强，学术实证中等。  

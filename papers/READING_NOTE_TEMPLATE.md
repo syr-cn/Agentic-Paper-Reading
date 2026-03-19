@@ -1,7 +1,8 @@
-# Paper Reading Note Template (for `papers/`)
+# Paper Reading Note Template (DNL: Deep Note & List) (for `papers/`)
 
 > 用法：复制本模板新建文件（建议命名：`YYYY-MM-DD_short-title.md`）。
 > 目标：避免流水摘要，输出“可决策、可复用”的研究笔记。
+> 术语约定：**DNL = Deep Note & List**。其中 `Deep Note` 指单篇深读笔记，`List` 指 readinglist 索引更新。
 
 ## 0) Metadata
 - **Title:** 
