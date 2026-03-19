@@ -5,7 +5,7 @@
 - [01me-Distillation-Notes](../papers/2026-03-19_01me-distillation-notes.md) — context asset + writer-reviewer loop；对系统化反思闭环设计有直接启发。✅（2026-03-19 deep note synced）
 
 ## Should-read
-- 
+- [AutoSkill](../papers/2026-03-11_autoskill.md) — 已升级为 deep note（2026-03-19）；下一步建议做 sidecar A/B 验证（skill-memory vs summary-memory）。
 
 ## Nice-to-read
 - 
