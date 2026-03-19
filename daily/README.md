@@ -6,6 +6,12 @@ Daily multi-source briefings (research + world signals) for Master.
 - `daily/YYYY-MM-DD.md`
 
 ## Fixed Structure
+### A) Morning Header (at top)
+1. 今日天气（城市：合肥，Asia/Shanghai；不可用则写“天气源不可用”）
+2. 今日古诗或名句（1条 + 1句解释）
+3. 今日最值得看的内容（2-3条，先给结论）
+
+### B) Main Brief
 1. Top 3 全球要闻（公司/政策/产业）
 2. Top 3 研究进展（方法/模型/benchmark）
 3. Top 3 工程信号（tooling/infra/agent practice）
@@ -15,4 +21,5 @@ Daily multi-source briefings (research + world signals) for Master.
 ## Rules
 - Every item must include source link + one-line relevance reason.
 - State fallback source explicitly if primary source unavailable.
-- Keep concise (12-20 lines).
+- Keep concise (14-24 lines).
+- Append same content to Obsidian daily note.
