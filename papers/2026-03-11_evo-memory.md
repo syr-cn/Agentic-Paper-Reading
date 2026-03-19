@@ -1,179 +1,139 @@
 # Evo-Memory 精读笔记（DNL Deep Note）
 
 ## 0) Metadata
-- **Title:** Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory  
-- **Alias:** Evo-Memory  
-- **Authors / Org:** Google DeepMind × UIUC（含多位联合作者）  
-- **Venue / Status:** arXiv 2511.20857v1（2025-11-25）  
-- **Links:**  
-  - Abs: https://arxiv.org/abs/2511.20857  
-  - PDF: https://arxiv.org/pdf/2511.20857  
-- **My rating:** ★★★★★（维持原倾向）  
-- **Read depth:** deep（基于正文 + 可见附录片段重建）  
-- **Scoring (1+2+2):** 基础 1 + 质量 2 + Observation 2 = **5**
+- **Title:** Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory
+- **Alias:** Evo-Memory
+- **Authors / Org:** Noveen Sachdeva et al.；Google DeepMind × UIUC
+- **Venue / Status:** arXiv 2511.20857v1
+- **Date:** 2025-11-25
+- **Links:**
+  - Abs: https://arxiv.org/abs/2511.20857
+  - HTML: https://arxiv.org/html/2511.20857v1
+  - PDF: https://arxiv.org/pdf/2511.20857
+  - Code: (paper states “will release”, link not provided in v1)
+- **Tags:** agent-memory, test-time-learning, streaming-benchmark, retrieval, embodied-agent
+- **My rating:** ★★★★★（维持原倾向）
+- **Read depth:** deep
+- **Scoring (1+2+2):** 基础 1 + 质量 2 + Observation 2 = **5/5**
 
 ---
 
-## 1) 一句话 Why-read
-这篇把 agent memory 的评估目标从“会不会回忆过去”推进到“能不能在任务流中持续提炼并复用经验”，并给出了可执行 benchmark（Evo-Memory）+ 基线（ExpRAG）+ 强方法（ReMem）。
+## 1) 一句话 Why-read（必填）
+- **Key claim/contribution + key observation：** 这篇把 memory 评估从“对话事实召回”升级到“连续任务中的经验复用与演化”，并用统一 benchmark（Evo-Memory）+ 强基线（ExpRAG）+ 强方法（ReMem）给出可复现实验闭环；最关键观察是：多轮任务下收益远大于单轮任务，且效率（steps）显著下降。
 
 ---
 
-## 2) CRGP
-
+## 2) CRGP 拆解 Introduction（必填）
 ### C — Context
-- 以往 memory 工作主要评估**静态对话召回**（recall what was said），但真实 agent 面临的是连续任务流，需要**边做边学**（test-time evolution）。
-- 作者提出：仅有 recall 不够，关键是 experience reuse（remember what was learned）。
+- LLM agent 已能推理、调用工具、执行多步任务，但 memory 仍常被当作“被动缓存”。
+- 现实 agent 在部署时要面对连续任务流，核心问题是能否从历史交互中学会可迁移策略。
 
-### R — Related Work
-- 相关脉络分两支：  
-  1) **Test-time adaptation / self-improvement**（如 reflexion、voyager、self-evolving agent 线）；  
-  2) **LLM memory systems**（RAG、分层记忆、workflow memory、policy memory）。
-- 现有 benchmark（文中点名 StreamBench、LifelongBench 等）仍缺少统一框架来评估“检索-整合-演化”的完整闭环。
+### R — Related work
+- Test-time adaptation / self-improvement：Reflexion、Voyager 等强调在线反思。
+- Memory 系统：RAG、Mem0、MemOS、workflow/procedural memory 等强调检索与存储机制。
+- 现有评测多是静态 recall 或 retention，缺少“检索-整合-演化”一体化比较。
 
-### G — Research Gap
-- 缺一个统一评测：同时覆盖**单轮推理/QA**与**多轮交互任务**，并显式考察 memory 的**持续更新、经验迁移、效率变化、序列鲁棒性**。
-- 缺跨方法可比 setting：不同 memory 方法往往协议不统一，难比较。
+### G — Research gap
+- 缺统一流式基准：同时覆盖单轮 reasoning/QA 与多轮 embodied 任务。
+- 缺统一协议：不同 memory 方法难以公平比较，尤其在 test-time learning 下。
 
 ### P — Proposal
-- 提出 **Evo-Memory**：把静态数据重组为 streaming task sequence，统一 Search → Synthesis → Evolve 循环。  
-- 统一实现并评测 **10+ memory modules**，覆盖多类 agent memory 设计。  
-- 给出两套代表方法：  
-  - **ExpRAG**：任务级经验检索聚合（轻量强基线）；  
-  - **ReMem**：Think / Act / Refine 三操作交替，显式做 memory refine。
+- 提出 **Evo-Memory**：将静态数据重组为任务序列，统一 **Search → Synthesis → Evolve**。
+- 实现并评测 10+ memory 模块。
+- 提出两类代表方案：
+  - **ExpRAG**：轻量经验检索聚合基线；
+  - **ReMem**：Think / Act / Refine Memory 三操作循环，显式 memory refinement。
 
 ---
 
-## 3) Figure 区（关键图与我关注的信息）
+## 3) Figure 区（至少 1 张，抓主图，不跳过）
+- 图1（问题定义对比）：
+  ![fig1](https://arxiv.org/html/2511.20857v1/x1.png)
+  解释：对比 conversational recall（记住说过什么）与 experience reuse（记住学到了什么策略），是全文动机核心。
 
-- **Fig.1（概念对比）**：对比 conversational recall vs experience reuse。  
-  - 关键信号：作者明确主张“记住事实 ≠ 学会策略”。
-- **Fig.3（方法总览）**：左侧 test-time evolution 流程；右侧 ReMem 架构（Think / Act / Refine Memory）。  
-  - 关键信号：memory 不再是被动上下文，而是可被 agent 主动“重写/裁剪/重组”的对象。
-- **Fig.4（相关性）**：ReMem 相对 History 的收益与任务相似度相关。  
-  - Gemini 2.5 Flash：**Pearson r=0.717**；Claude 3.7 Sonnet：**r=0.563**。
-- **Fig.5（步数效率）**：ReMem 在多环境步数下降；示例 **AlfWorld 22.6 → 11.5 steps**。
+- 图2（ReMem 总览）：
+  ![fig2](https://arxiv.org/html/2511.20857v1/x3.png)
+  解释：左侧是 test-time evolution 流，右侧是 Think/Act/Refine 三模块，强调 memory 是“可被主动改写”的对象。
 
-> 注：图中部分横轴样本数、误差线细节在可提取文本中未完整给出，原文未给出可提取数字时不臆测。
-
----
-
-## 4) Experiments
-
-### 4.1 Experimental setup（具体设置）
-
-#### 数据与任务
-- 共 **10 个数据集/环境**（文中明示）：  
-  - 单轮：MMLU-Pro、GPQA-Diamond、AIME-24、AIME-25、ToolBench  
-  - 多轮：AlfWorld、BabyAI、ScienceWorld、Jericho、PDDL
-- 目标：同一框架下统一评估 factual / reasoning / tool-use / embodied long-horizon。
-
-#### 统一协议
-- 统一循环：**Search → Synthesis(Predict) → Evolve**。  
-- 反馈信号：正确性（correctness signal）。
-
-#### 模型与方法
-- Backbones：Gemini 2.5（Flash / Flash-Lite / Pro）与 Claude（3.5 Haiku / 3.7 Sonnet）。
-- 方法族：无持久记忆（ReAct/Amem）、自适应记忆（SelfRAG/MemOS/Mem0/LangMem）、程序记忆（DC/AWM）、提出方法（ExpRecent/ExpRAG/ReMem）。
-- 文中说明：部分方法与 embodied 环境兼容性有限，因此非所有方法覆盖所有任务。
-
-#### 检索配置（附录）
-- Retriever: **BAAI/bge-base-en-v1.5**。  
-- Top-k: **k=4**（默认）。  
-- 检索预算与提示长度约束统一。  
-- Memory 总容量上限的精确 token 数值：**原文未给出可提取数字**（在可见片段中）。
-
-#### 指标
-- 单轮：Exact Match / API-Acc（ToolBench）。  
-- 多轮：Success rate（S）/ Progress rate（P）。  
-- 另有 Step efficiency、Sequence robustness。
+- 图3（分析图：相关性）：
+  ![fig3](https://arxiv.org/html/2511.20857v1/figures/correlation_side_by_side.png)
+  解释：ReMem 相对 History 的收益与任务相似度正相关（Gemini r=0.717；Claude r=0.563），给出“什么时候 memory 更有效”的边界条件。
 
 ---
 
-### 4.2 Main result table（核心结果摘录，含 Delta）
+## 4) Experiments（必须含具体数字）
+### 4.1 Experimental setup
+- **任务/数据：** 共 10 个任务源。
+  - 单轮：AIME24, AIME25, GPQA-Diamond, MMLU-Pro(Eco/Eng/Philo), ToolBench
+  - 多轮：AlfWorld, BabyAI, PDDL, ScienceWorld（文中另提 Jericho 在 benchmark 描述中）
+- **模型/agent 配置：** Gemini-2.5（Flash/Flash-Lite/Pro）与 Claude（3.5-Haiku / 3.7-Sonnet）；主表重点是 Gemini-2.5 Flash 与 Claude-3.7 Sonnet。
+- **对比基线：** Baseline, History, ReAct, Amem, SelfRAG, Mem0, MemOS, LangMem, DC-Cu, DC-RS, AWM, ExpRecent, ExpRAG, ReMem。
+- **检索配置：** Retriever = **BAAI/bge-base-en-v1.5**，默认 **top-k=4**，统一检索预算与提示长度约束。
+- **评测指标：**
+  - 单轮：Exact Match，ToolBench API/Acc
+  - 多轮：Success(S) / Progress(P)
+  - 分析：Step efficiency、Sequence robustness
 
-#### A) 单轮（Table 1 摘要）
-| Backbone | Setting | Baseline Avg | ExpRAG Avg | ReMem Avg | 关键 Delta |
-|---|---:|---:|---:|---:|---|
-| Claude 3.7 Sonnet | Avg | 0.54 | **0.59** | 0.58 | ExpRAG 相对 Baseline **+0.05** |
-| Gemini 2.5 Flash | Avg | 0.59 | 0.60 | **0.65** | ReMem 相对 Baseline **+0.06** |
+### 4.2 Main result table（必填）
+| Setting | Baseline | Proposed | Delta |
+|---|---:|---:|---:|
+| 单轮 Avg（Claude-3.7） | 0.54 | ExpRAG 0.59 | **+0.05** |
+| 单轮 Avg（Gemini-2.5 Flash） | 0.59 | ReMem 0.65 | **+0.06** |
+| 多轮 Avg S/P（Gemini-2.5 Flash） | 0.27 / 0.46 | ReMem 0.50 / 0.64 | **+0.23 / +0.18** |
+| 多轮 Avg S/P（Claude-3.7） | 0.24 / 0.52 | ReMem 0.78 / 0.91 | **+0.54 / +0.39** |
+| Claude-3.7, AlfWorld S/P | 0.18 / 0.49 | ReMem 0.92 / 0.96 | **+0.74 / +0.47** |
+| Gemini-2.5 Flash, ToolBench API/Acc | 0.71 / 0.61 | ReMem 0.85 / 0.71 | **+0.14 / +0.10** |
 
-补充（Gemini 2.5 Flash, ReMem）：
-- AIME24 **0.60**, AIME25 **0.53**, GPQA **0.51**
-- MMLU-Pro(Eco) **0.85**, (Eng) **0.46**, (Philo) **0.79**
-- ToolBench API/Acc **0.85 / 0.71**
+补充单轮细节（Gemini-2.5 Flash, ReMem）：AIME24 **0.60**，AIME25 **0.53**，GPQA **0.51**，MMLU-Pro(Eco/Eng/Philo)=**0.85/0.46/0.79**。
 
-#### B) 多轮（Table 2 摘要）
-| Backbone | Setting | Baseline Avg (S/P) | ExpRAG Avg (S/P) | ReMem Avg (S/P) | 关键 Delta |
-|---|---:|---:|---:|---:|---|
-| Gemini 2.5 Flash | Avg | 0.27 / 0.46 | 0.46 / 0.63 | **0.50 / 0.64** | ReMem 相对 Baseline **+0.23 / +0.18** |
-| Claude 3.7 Sonnet | Avg | 0.24 / 0.52 | 0.63 / 0.82 | **0.78 / 0.91** | ReMem 相对 Baseline **+0.54 / +0.39** |
+### 4.3 Analysis experiments（强制“现象+解释”）
+- **现象1：** 多轮任务收益明显大于单轮；Claude-3.7 下 ReMem 从 0.24/0.52 到 0.78/0.91。
+  **解释（作者）：** 长时任务更依赖可复用程序性经验，memory refine 能累积优势。
+  **【标注】（我的判断）：** 这说明 memory 的真实价值在“减少重复试错”，而不只是提升一次性答题准确率。
 
-多轮细分（Claude 3.7 + ReMem）：
-- AlfWorld **0.92 / 0.96**
-- BabyAI **0.73 / 0.83**
-- PDDL **0.83 / 0.95**
-- ScienceWorld **0.62 / 0.89**
+- **现象2：** ExpRAG 作为轻量方法非常强，在 Claude 单轮 Avg 上甚至优于 ReMem（0.59 vs 0.58）。
+  **解释（作者）：** 任务级经验检索本身已带来强迁移，复杂机制并非总是必要。
+  **【标注】（我的判断）：** 对工程落地是好消息：先做“经验粒度 + 检索质量”，再做复杂 controller。
 
-> 说明：用户上下文里提到“0.92/0.96 on BabyAI”这句在可见表格中对应更像 AlfWorld；我以表格数值为准。
+- **现象3：** 收益与任务相似度显著相关（Gemini r=0.717，Claude r=0.563）。
+  **解释（作者）：** 结构重复度高的任务更容易复用历史策略。
+  **【标注】（我的判断）：** 如果目标场景高度异质，必须加更强路由/去噪，否则 memory 可能变噪声库。
 
----
+- **现象4：** Step efficiency 显著改善，例如 AlfWorld 平均步数 **22.6 → 11.5**。
+  **解释（作者）：** ReMem 的反思与重组让 action 更聚焦。
+  **【标注】（我的判断）：** 这条比“分数+1~2点”更关键，直接关联真实推理成本和延迟。
 
-### 4.3 Analysis（至少 3 条：现象 + 解释 + 我的判断）
+- **现象5：** 混合成功/失败经验时，多数基线退化，ReMem 仍稳定（Table 4）。
+  **解释（作者）：** naive 累积失败样本会污染检索；refine 可缓解。
+  **【标注】（我的判断）：** failure memory 不是不能存，而是必须带触发条件与可解释标签。
 
-1) **现象：** 多轮场景收益远高于单轮，特别是 Claude 3.7 上 ReMem Avg 从 0.24/0.52 提到 0.78/0.91。  
-   **解释（作者）：** 长时任务更依赖可复用策略，持续反思与记忆重组可累计优势。  
-   **我的判断：** 这非常符合 agent 实务：单题提升常被 backbone ceiling 限制，但长链任务中“少走弯路”会复利放大。
+#### Case（>=2）
+- **Case 1（高相似任务，收益放大）：AlfWorld / PDDL**
+  - 现象：Claude-3.7 上 ReMem 在 AlfWorld 达到 **0.92/0.96**，PDDL 达到 **0.83/0.95**。
+  - 解释：任务结构重复、可复用子策略多，经验演化更容易形成“模板化解法”。
 
-2) **现象：** 轻量方法 ExpRAG 在多设置下非常强（如 Claude 单轮 Avg 0.59 > ReMem 0.58；多轮 Avg 0.63/0.82 也很高）。  
-   **解释（作者）：** 任务级经验检索本身就能带来显著迁移，复杂机制不一定总是必要。  
-   **我的判断：** 这说明“memory 设计先做对检索对象粒度”比“先堆复杂控制器”更关键；ExpRAG 是值得优先复刻的工程基线。
-
-3) **现象：** ReMem 收益与任务相似度显著正相关（r=0.717 / 0.563）。  
-   **解释（作者）：** 当任务结构可聚类、可复用模式更稳定时，memory evolution 更有效。  
-   **我的判断：** 这是经验复用的核心边界条件：若任务分布高度异质，memory 需要更强“路由+去噪+失败归因”，否则会被噪声拖垮。
-
-4) **现象：** 步数效率提升显著（例：AlfWorld 22.6→11.5）。  
-   **解释（作者）：** memory refine 让检索到的轨迹更“可执行”，减少无效探索。  
-   **我的判断：** 对真实部署最有价值的不是分数绝对值，而是 step/token 成本下降，这条证据很实用。
-
-5) **现象：** 在混合成功/失败经验写入时，多数基线退化，ReMem 更稳（见 Table 4）。  
-   **解释（作者）：** 被动累积失败会污染检索；主动 refinement 能做选择性利用。  
-   **我的判断：** 失败记忆不是不能存，而是必须“带标签+带条件触发”；否则 recall 噪声会压过收益。
+- **Case 2（低相似/高多样任务，收益受限）：AIME25 / GPQA**
+  - 现象：单轮提升相对温和，且跨方法差距没有多轮大。
+  - 解释：题目分布更异质，直接复用历史轨迹的收益小，memory 更依赖高质量抽象而非原样检索。
 
 ---
 
 ## 5) Why it matters for our work
-- 对 **agent memory**：给了可直接套用的统一评测协议（尤其多轮 S/P + 步数效率 + 序列鲁棒性）。
-- 对 **long-context**：提示“长上下文不等于长记忆”，真正有效的是可演化的经验单元与检索策略。
-- 对 **multimodal RL/agent**：Think-Act-Refine 思路可迁移到轨迹摘要、失败归因、技能库更新等在线循环。
+- 对 **agentic memory**：提供了可复用的统一评估协议，尤其是 S/P + step + sequence robustness 的组合指标。
+- 对 **long-context reasoning**：再次验证“长上下文 ≠ 长期学习”；关键是经验单元如何演化、被检索、被重组。
+- 对 **tool-use / embodied agents**：Think-Act-Refine 可迁移到技能库更新、失败归因和在线策略压缩。
 
 ---
 
-## 6) Actionable next steps（3 条，可执行）
-
-1) **Agent Memory 方向：复刻 ExpRAG→ReMem 两级基线**  
-   - 先用任务级经验模板 + top-k=4 检索（对齐论文设置）做 ExpRAG；  
-   - 再加 Refine（去噪/合并/失败标签）模块，比较 S/P、步数、token 成本。  
-
-2) **Long-context 方向：做“相似度-收益曲线”诊断**  
-   - 按任务嵌入聚类计算 intra-dataset similarity；  
-   - 复现 gain vs similarity 相关性，判断你的场景是否也满足“高相似才高收益”；  
-   - 若相关性弱，优先优化 memory routing 而不是盲目加大上下文窗口。
-
-3) **Multimodal RL 方向：引入失败经验的可控写入策略**  
-   - 设计 success/failure 双通道 memory（失败必须携带条件与反例触发门）；  
-   - 在 embodied 任务上比较“全量写入 vs 选择性写入”对 success 与 step efficiency 的影响；  
-   - 目标是复现“性能不掉、步数下降”的组合收益。
+## 6) Actionable next step
+- [ ] 先复刻 **ExpRAG**（任务级经验模板 + bge 检索 + top-k=4），作为统一低成本基线。
+- [ ] 在现有 agent loop 里加入 **Refine**（去噪、合并、失败标签化），对比 S/P、steps、token cost。
+- [ ] 做“**相似度-收益曲线**”诊断：若相关性弱，优先优化 memory routing，而非扩大 context window。
 
 ---
 
-## 7) 评分解释（维持原评分倾向）
-- **维持 5 星，不改分。**
-- 理由：
-  1) 不是只提新方法，而是把评测范式从 recall 升级到 evolution；
-  2) 覆盖任务广（10 数据集）且有统一协议，工程可复现性较高；
-  3) 结果上既有“强方法 ReMem”，也有“强基线 ExpRAG”，对研究与落地都实用。
-- 保留审慎点：
-  - 某些实现细节（如部分预算上限）在可见文本里数字不全；
-  - 不同方法跨环境兼容性并不完全一致，比较时需注意。
+## 7) 评分解释（必填）
+- **质量分 2/2：** 问题定义清晰、benchmark + 方法 + 分析一体化，且给出跨任务/跨模型证据。
+- **Observation 分 2/2：** 除主结果外，提供了相似度相关性、步数效率、失败记忆鲁棒性等可落地洞察。
+- **总分 5/5：** 基础 1 + 质量 2 + Observation 2。
+- **为什么不是更高分：** 评分上限就是 5；若按更细粒度审稿标准，仍希望看到更多成本统计（token/latency）与跨实现细节的完全开源对齐。

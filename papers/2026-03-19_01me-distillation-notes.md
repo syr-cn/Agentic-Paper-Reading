@@ -1,127 +1,157 @@
-# 01me-Distillation-Notes 阅读笔记（DNL Deep Note 重写）
+# 01me-Distillation-Notes 阅读笔记（DNL Deep Note，按模板0~7重做）
 
 ## 0) Metadata
-- **Title:** Creation Notes for “Distillation”  
-- **Alias:** 01me-Distillation-Notes  
-- **Type:** Blog / Creation Notes（非同行评审论文）  
-- **Author / Org:** Bojie Li / 01.me  
-- **Date:** 2026-03-16  
-- **Links:**  
-  - Post: https://01.me/en/2026/03/novel-distillation-notes/  
-  - Related story: https://01.me/en/2026/03/novel-distillation/  
-- **Tags:** context-engineering, writer-reviewer-loop, agent-memory, distillation-risk, value-alignment  
-- **My rating:** ★★★★☆（4/5，保持原评分倾向）  
-- **Read depth:** deep  
+- **Title:** Creation Notes for “Distillation”
+- **Alias:** 01me-Distillation-Notes
+- **Authors / Org:** Bojie Li / 01.me
+- **Venue / Status:** Blog note（非同行评审）
+- **Date:** 2026-03-16
+- **Links:**
+  - Abs: N/A（博客体裁）
+  - HTML: https://01.me/en/2026/03/novel-distillation-notes/
+  - Related story: https://01.me/en/2026/03/novel-distillation/
+  - PDF: N/A
+  - Code: N/A
+- **Tags:** context-engineering, writer-reviewer-loop, external-reflection-loop, distillation-risk, value-alignment
+- **My rating:** ★★★★☆（保持原评分倾向）
+- **Read depth:** deep
 - **Scoring (1+2+2):** 基础 1 + 质量 1 + Observation 2 = **4**
 
 ---
 
-## 1) 一句话 Why-read
-这篇最值得读的点是：它把“高质量 Agent 产出”从**单次 prompt 技巧**上移到**长期上下文资产 + 外部 Reviewer 强约束闭环**，对我们做 agent memory / long-context / continual learning 的系统设计有直接可落地启发。
+## 1) 一句话 Why-read（必填）
+- **Key claim/contribution + key observation：**
+  这篇最有用的不是“写科幻技巧”，而是把高质量生成落到一个可执行的工程闭环：**Writer–Reviewer 外环强制反思 + 长期上下文资产化**；对 agent memory / long-context 系统设计是可直接迁移的方法模板。
 
 ---
 
-## 2) CRGP
-
+## 2) CRGP 拆解 Introduction（必填）
 ### C — Context
-- 文章处于 AI 产业“模型蒸馏普及 + 能力同质化”讨论语境下，作者用科幻创作反向验证自己的系统方法论。  
-- 内容不是实验论文，而是“创作过程复盘”：强调真实流程中的失败、返工、反思约束。
+- 背景是 2026 年 AI 行业高强度蒸馏与能力同质化讨论，作者以小说共创过程反向验证自己的系统方法论。
+- 文体是“创作复盘”而非实验论文，但提供了较多流程级数字与失败细节。
 
-### R — Related work / prior ideas
-- **上下文工程（Context Engineering）**：把既有 blog、语音记录、历史项目沉淀为长期语义资产。  
-- **Writer-Reviewer 双角色协作**：Writer 负责草拟，Reviewer 负责挑错、质疑与质量门禁。  
-- **风险映射**：蒸馏链条会造成误差共振（correlated failure），以及“事实正确但价值偏差”的错判。
+### R — Related work
+- 上下文工程（博客沉淀 + 语音记录）作为长期知识底座。
+- 多 agent 协作写作（Writer 产出、Reviewer 审校）代替单代理 self-reflection。
+- 对齐风险叙事：事实正确 ≠ 价值判断正确；同源蒸馏导致相关失效。
 
-### G — Gap
-- 仅在 prompt 里说“请深度反思”通常不稳定，模型会出现“看似反思、实则快速收敛”的偷懒路径。  
-- 仅做 factual correctness 不足以覆盖高风险场景中的价值判断正确性。  
-- 若知识来源/检索器单一，系统在大规模部署时更易出现同源偏差放大。
+### G — Research gap
+- 单轮/单代理“请深度思考”容易被模型走捷径，反思强度不稳定。
+- 传统文本质量检查偏结构/流畅，难覆盖设定一致性、科学合理性、价值层正确性。
+- 行业讨论里“distillation 风险”常停在概念层，缺少可执行流程约束。
 
-### P — Proposal / actionable pattern
-- 采用硬闭环：**Writer → Reviewer → Rewrite → Gate**（4 步，不通过 Gate 不入最终产物）。  
-- 把“上下文”当资产管理：持续沉淀、版本化、可检索，而不是临时拼 prompt。  
-- 在系统层加“异构验证 + 冲突标注”，降低同质化蒸馏导致的相关失效。
-
----
-
-## 3) Figure 区（信息载体）
-- 本文是创作复盘博客，**无标准学术 Figure / 无可复现实验图表**。  
-- 可提取的“结构图等价物”是流程：Writer-Reviewer-Rewrite-Gate 的迭代机制。
+### P — Proposal
+- 采用**外部强制反思闭环**：Writer 完成一轮后自动触发 Reviewer；不通过就继续改写。
+- 使用“分阶段创作”：outline → draft → iterative revision，并在人类关键节点插入 hard feedback。
+- 把 context 当长期资产运营：历史博客 + 可穿戴录音转写作为高密度先验，而非临时 prompt 拼接。
 
 ---
 
-## 4) Experiments / Evidence（按证据强度重写）
+## 3) Figure 区（至少 1 张，抓主图，不跳过）
+- 图1（原文页面真图链 / 页面快照证据）：
 
-> 注：这不是 benchmark 论文，以下按“可提取设置/证据”与“缺失项”分开记录。
+![fig1-creation-notes-snapshot](https://image.thum.io/get/width/1600/https://01.me/en/2026/03/novel-distillation-notes/)
 
-### 4.1 Experimental setup（可提取设置）
+解释：原文是纯文本长文，未内嵌学术图表；这里给出页面级真实图链，作为“方法与证据载体”的可视化锚点。核心信息是流程与数字分布，而非单张实验图。
 
-**可提取的具体设置（有数字/结构）：**
-1. **流程结构为 4 步**：Writer → Reviewer → Rewrite → Gate。  
-2. **核心角色为 2 个**：Writer 与 Reviewer（功能分离，而非单模型自言自语）。  
-3. **文档时间锚点**：发布于 **2026-03-16**（为后续纵向追踪同作者方法演进提供时间基准）。
+- 图2（相关作品页面真图链 / 叙事主线承接）：
 
-**原文未给出可提取数字（必须明确）：**
-- 原文未给出模型名称/版本（如 GPT-x、Claude-x 等）。  
-- 原文未给出训练或推理 token 规模。  
-- 原文未给出迭代轮数分布（平均 reviewer 往返次数）。  
-- 原文未给出样本量（创作任务数、对照组规模）。  
-- 原文未给出量化指标（胜率、人工偏好分、错误率下降百分比）。
+![fig2-distillation-story-snapshot](https://image.thum.io/get/width/1600/https://01.me/en/2026/03/novel-distillation/)
 
-### 4.2 Main result table（量化结果表）
+解释：该链接对应作者在 Notes 中反复引用的小说正文页，用于核对“设定—现实映射”与若干数字来源（如 Taalas、裁员、部署规模等）。
 
+---
+
+## 4) Experiments（必须含具体数字）
+> 注：本文是方法复盘博客，不是标准 benchmark 论文。以下按“可提取实验性证据”整理，并对缺失项显式标注。
+
+### 4.1 Experimental setup
+- **任务/数据：**
+  - 任务：科幻中篇创作与修订。
+  - 语料来源：作者历史博客 + **2 天** Limitless 录音转写。
+- **模型/agent 配置：**
+  - 写作主体：Claude Opus 4.6（文中明示）。
+  - 双代理：Writer Agent + Reviewer Agent（均为 Claude Code，不同 prompt）。
+- **流程与时长（有数字）：**
+  - 单轮：Writer 约 **30 分钟**（含 >**10 分钟**思考）+ Reviewer 约 **15 分钟**。
+  - 每次迭代总耗时约 **40–50 分钟**。
+  - Stage 1（outline）：约 **2 小时**，**3 轮** outline。
+  - Stage 2（first draft）：约 **2 小时**，自动 **3 轮**。
+  - Stage 3（overnight revision）：**5 轮 / 约4小时**。
+  - 人工二次介入：指出约 **12** 个问题；最终手工改动“**dozen or so**”（约十余处）。
+- **对比基线：**
+  - 明确对比思路存在（“单次写好” vs “外环循环”），但**无公开量化对照实验数据**。
+- **评测指标：**
+  - Reviewer 从四维审校：情节一致性 / factual correctness / 科学设定合理性 / 是否可发布。
+  - **缺失标注：**未给出标准化分数、人工偏好投票、盲测样本量。
+
+### 4.2 Main result table（必填）
 | Setting | Baseline | Proposed | Delta |
 |---|---:|---:|---:|
-| 写作质量（自动/人工评分） | 原文未给出可提取数字 | 原文未给出可提取数字 | 原文未给出可提取数字 |
-| 反思深度（轮次/覆盖率） | 原文未给出可提取数字 | 原文未给出可提取数字 | 原文未给出可提取数字 |
-| 价值对齐一致性 | 原文未给出可提取数字 | 原文未给出可提取数字 | 原文未给出可提取数字 |
+| 单轮迭代总耗时 | 原文未给出可提取数字 | **40–50 min/轮** | 原文未给出可提取数字 |
+| Outline阶段轮数 | 原文未给出可提取数字 | **3 轮** | 原文未给出可提取数字 |
+| First-draft自动轮数 | 原文未给出可提取数字 | **3 轮** | 原文未给出可提取数字 |
+| Overnight修订轮数 | 原文未给出可提取数字 | **5 轮** | 原文未给出可提取数字 |
+| Writer单轮工作时长 | 原文未给出可提取数字 | **~30 min**（其中思考>10 min） | 原文未给出可提取数字 |
+| Reviewer单轮工作时长 | 原文未给出可提取数字 | **~15 min** | 原文未给出可提取数字 |
 
-### 4.3 Analysis（至少 3 条：现象 + 解释 + 我的判断）
+> 说明：该文没有“同任务同预算下单轮/多轮 A/B”公开数值；因此 Delta 只能如实标注缺失。
 
-1. **现象：** 单轮生成容易“快速看起来完成”，但关键逻辑漏洞会残留。  
-   **解释（作者视角）：** 模型倾向最短路径满足指令，缺外部压力时不会持续深挖。  
-   **我的判断：** 这说明“反思”应被系统化成**外部可审计流程**，而不是放在 prompt 修辞里；对我们而言应把 Reviewer Gate 做成硬门禁。
+### 4.3 Analysis experiments（强制“现象+解释”）
+1. **现象：** 单代理容易“一次改完即停止”，深度反思不足。  
+   **解释（作者）：** 代理会走最短完成路径；prompt 里写“请仔细检查”不构成硬约束。  
+   **【标注】（我的判断）：** 反思要从“提示词能力”升级为“系统机制能力”；应把 Reviewer Gate 做成写入前必过关。
 
-2. **现象：** 模型在宏观结构上常表现不错，但细节层面容易出现“真实感缺口”。  
-   **解释（作者视角）：** 训练语料里“统计共现”能支撑结构，但不能稳定替代现实经验细节。  
-   **我的判断：** 生成栈应拆成“结构生成器 + 证据检索器 + 价值审校器”，避免一个 agent 同时承担所有职能造成盲区。
+2. **现象：** 首稿宏观结构可用，但细节有明显“机器感/失真感”。  
+   **解释（作者）：** AI 缺乏真实生活经验，越写细节越容易露出不真实。  
+   **【标注】（我的判断）：** 这支持“结构生成器 + 事实校验器 + 价值审校器”解耦，而不是单 agent 全包。
 
-3. **现象：** 蒸馏普及后，不同系统可能共享相似错误模式（相关失效）。  
-   **解释（作者视角）：** 共同基座 + 类似蒸馏路径会让偏差同源传播。  
-   **我的判断：** memory/retrieval 层必须做异构化（多源索引、多检索器、多 rerank 视角），否则越优化越“整齐地错”。
+3. **现象：** 模型在剧情上反复滑向“爽文/好莱坞式绝对结局”。  
+   **解释（作者）：** 语言模型偏好高先验叙事模板，容易压平复杂性与代价。  
+   **【标注】（我的判断）：** 对应到 agent planning，说明默认策略会追求高概率套路，需要外部 reward shaping 约束。
 
-4. **现象：** “事实没错”并不保证“价值决策正确”。  
-   **解释（作者视角）：** 事实判断与价值判断是不同层级任务。  
-   **我的判断：** 评估体系要拆分 factual metrics 与 value-alignment metrics；否则线上风险会被单一准确率掩盖。
+4. **现象：** 即便 factual 没明显错，价值判断仍会错位（如养老院氧气机场景）。  
+   **解释（作者）：** 物理层对齐与价值层对齐是两层问题，前者修好不等于后者修好。  
+   **【标注】（我的判断）：** 我们评估中应拆分 factual-metrics 与 value-metrics，避免“单一准确率掩盖风险”。
+
+### 4.4 Case（>=2，来自文中具体失败-修复实例）
+- **Case 1：Outline 角色关系漂移**  
+  - 失败现象：从“建立可信任关系”漂移成“恋爱小说式调情”。  
+  - 修复动作：作者明确删除 romance 情节，仅保留关系前史作为信任机制。  
+  - 启发：高层约束必须可执行且可拒绝默认叙事模式。
+
+- **Case 2：结局过度理想化**  
+  - 失败现象：AI 倾向“人类说服强AI”或“Mortal Chip 完美无缺”这类绝对解。  
+  - 修复动作：改为“AI 以自身盲区验证自身”+“模拟芯片精度代价并存”。  
+  - 启发：要强制写入 trade-off，否则系统会自动输出低摩擦神话结局。
+
+- **Case 3：文体偏 Tell 不够 Show**（附加）  
+  - 失败现象：文本退化为技术说明文，叙事动作与人物语气不足。  
+  - 修复动作：作者多轮提示“Show, Don’t Tell”，并最终手工改写最后章节。  
+  - 启发：风格控制是独立子任务，需单独奖励与检查器。
 
 ---
 
 ## 5) Why it matters for our work
-与我们当前方向（agent memory / long-context / continual learning）是强耦合的：
-1. **Memory 观念升级：** 从“存文本”升级为“可复用、可检索、可追责的上下文资产”。  
-2. **Long-context 观念升级：** 不是盲目拉长上下文，而是建立“角色分工 + 迭代门禁”的利用机制。  
-3. **Continual learning 观念升级：** 持续学习需要外环反馈与冲突处理，而不是仅依赖参数内化或一次性回放。
+- 对 **agent memory**：证明“高质量输出依赖长期上下文资产”，不是一次性 prompt engineering。
+- 对 **long-context**：给出可复用范式——长上下文价值来自外环调度与角色分工，而非 token 堆叠。
+- 对 **continual learning / RL**：Reviewer 反馈可结构化成学习信号，驱动策略改写而非被动后处理。
 
 ---
 
-## 6) Actionable next steps（面向 agent memory / long-context / multimodal RL）
-
-1. **Agent memory：上线 Reviewer Gate + 冲突账本（Conflict Ledger）**  
-   - 执行：在写入长期记忆前新增“审阅通过”状态位；冲突信息（来源冲突、时间冲突、价值冲突）强制记录。  
-   - 验收：两周内统计“未审阅写入占比”降到 0；冲突样本可追溯率达到 100%。
-
-2. **Long-context：做异构检索 A/B（single vs multi）**  
-   - 执行：对同一任务比较单检索器与多检索器+reranker 的 hallucination 率、引用多样性、答案稳定性。  
-   - 验收：若 multi 路线在稳定性上显著提升，则默认切换为多路检索编排。
-
-3. **Multimodal RL：把 Reviewer 信号转为可学习奖励**  
-   - 执行：将 Reviewer 的批注结构化为 reward（逻辑一致性、证据充分性、价值一致性三头奖励），用于离线偏好优化或策略蒸馏。  
-   - 验收：在内部任务集上比较“有/无 Reviewer reward”两组，观察拒答质量、反思深度与错误恢复能力。
+## 6) Actionable next step
+- [ ] 在现有系统加入 **Writer→Reviewer→Gate** 三状态机：未过 Gate 的内容禁止写入长期记忆。
+- [ ] 建立“**失败模式账本**”（romance drift / blockbuster drift / tell-heavy）并做自动触发检测。
+- [ ] 做一次小规模 A/B：单代理单轮 vs 双代理外环（固定总 token 预算），记录一致性错误率与人工偏好。
 
 ---
 
-## 7) 评分解释（保持原倾向，不无依据改分）
-- **总分维持 4/5（★★★★☆）**。  
-- **质量分 1/2：** 方法论和工程洞见很强，但缺可复现实验与公开量化结果。  
-- **Observation 分 2/2：** 对我们系统设计（尤其是外环审校、记忆资产化、去同质化）迁移价值非常高。  
-- **为什么不是 5/5：** 目前证据以高质量经验总结为主，尚不足以支撑严格 benchmark 级结论。
+## 7) 评分解释（必填）
+- **质量分 1/2：**
+  有清晰流程、具体时长与轮次、真实失败案例；但缺标准对照实验、统计显著性与公开复现配置。
+- **Observation 分 2/2：**
+  对我们正在做的 memory/long-context 架构有直接可执行迁移价值（尤其外环门禁与失败模式治理）。
+- **总分 4/5：**
+  与原评分倾向一致，维持 ★★★★☆。
+- **为什么不是更高分：**
+  证据主要是高质量经验复盘，不是可重复 benchmark 论文；缺统一指标和公开实验表。

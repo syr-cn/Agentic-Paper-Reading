@@ -1,163 +1,163 @@
-# 01.me《Sovereign Agents: In-Depth Research on Clawdbot/OpenClaw》精读重写（DNL Deep Note）
+# 01.me《Sovereign Agents: In-Depth Research on Clawdbot/OpenClaw》精读重做（DNL Deep Note）
 
 ## 0) Metadata
 - **Title:** Sovereign Agents: In-Depth Research on Clawdbot/OpenClaw  
 - **Alias:** 01me-Sovereign-Agents  
-- **Type:** Blog / System Research Report（非学术论文）  
+- **Type:** Blog / System Research Report（非同行评审论文）  
 - **Link:** https://01.me/en/2026/01/clawdbot-openclaw-analysis/  
 - **Author / Source:** 01.me（文中注明与 Clawdbot + Claude Opus 4.5 协作）  
 - **Read date:** 2026-03-19  
 - **My rating:** ★★★☆☆（**保持原评分倾向，不上调**）  
-- **Read depth:** deep（单篇精读）  
-- **Scoring (1+2+2):** 基础 1 + 质量 1 + Observation 1 = **3**
+- **Read depth:** deep（单篇重读+结构化重做）  
+- **Scoring (1+2+2):** 基础 1 + 质量 1 + Observation 1 = **3/5**
 
 ---
 
 ## 1) One-line Why-read
-这篇文章的价值不在“新算法”，而在把 **主权 Agent（数据/算力/控制三主权）** 讲成一条可落地的系统路线：你到底要“平台托管的安全感”，还是“本地自治的可控性”。
+这篇的核心价值不在算法创新，而在给出一个可落地的系统命题：**把 Data / Compute / Control 三种主权，统一到同一个开源 Agent 运行时里**。
 
 ---
 
 ## 2) CRGP（Context / Related / Gap / Proposal）
 
 ### C — Context
-- 文章把 Clawdbot（后续改名 OpenClaw）放在 2024–2026 的 Agent 演化线上：
-  1) Deep Research，2) Computer Use，3) Coding Agent 三线汇合。
-- 核心主张：所谓 **Sovereign Agent** = Data sovereignty + Compute sovereignty + Control sovereignty。
-- 文章定位是“系统研究报告 + 行业观察”，不是论文，不提供严格实验协议。
+- 文章把 2024–2026 的 Agent 演进归纳为三条线汇合：
+  1) Deep Research，2) Computer Use，3) Coding Agent。  
+- 主张“主权智能体（Sovereign Agent）”三要素：
+  - 数据主权（数据尽量不离开本地）
+  - 算力主权（云 API 与本地模型可切换）
+  - 控制主权（用户承担最终控制与风险）
+- 体裁是“系统观察 + 工程拆解”，不是实验论文。
 
-### R — Related work / 参照系
-- 竞品与技术脉络：Anthropic Computer Use、Claude Cowork/Code、OpenAI Deep Research、Manus、Gemini Deep Research。
-- 文章给出大量“市场与工程指标”作为论据（如 stars、插件数、成本、时间线），并给出架构对照（Cowork vs OpenClaw）。
+### R — Related / Baselines
+- 对照对象（文中高频出现）：Claude Cowork、Claude Code、Computer Use、OpenAI Deep Research、Manus、Gemini 等。
+- 技术参照：
+  - ReAct 工具循环
+  - Playwright/DOM 交互 vs 纯截图循环
+  - Markdown + SQLite 混合检索记忆
 
-### G — Research gap（本文试图填的空白）
-- 闭源 Agent 的主流范式下，用户缺乏三类主权：
-  - 数据不可验证地“离开本地”；
-  - 算力路径受供应商绑定；
-  - 控制权被厂商策略托管。
-- 技术上已有成熟组件（LLM、Tool Calling、本地执行），但缺“**三能力合一 + 开源可改 + 可自托管**”的系统化实现。
+### G — Gap
+- 闭源 Agent 的现实限制被归纳为三类缺口：
+  1) 数据路径不可验证；
+  2) 算力路径被厂商绑定；
+  3) 行为边界由供应商策略决定。  
+- **证据缺口（学术视角）**：缺少公开 benchmark、任务定义、统计显著性、安全红队量化。
 
-### P — Proposal（作者方案）
-- 以 OpenClaw 为样本提出一套“主权 Agent 蓝图”：
-  - 四层架构：Gateway / Core / Memory / Execution；
-  - Coding Agent 作为核心执行内核（7 个基础工具）；
-  - Markdown + Git + SQLite-hybrid search 的长期记忆；
-  - 多层权限策略 + 容器隔离 + 人在回路的安全防护。
+### P — Proposal
+- 以 OpenClaw 为样本提出“主权 Agent 蓝图”：
+  - 四层架构：Gateway / Core / Memory / Execution
+  - Coding Agent 作为主执行核心（7 基础工具）
+  - Memory 走 Markdown + Git + SQLite hybrid 路线
+  - 安全上采用沙箱、审批门、命令拦截与审计
 
 ---
 
-## 3) Figure / Data 区（非论文，改为“关键数字与设置摘录”）
+## 3) Figure / Data（真图链 + 数字摘录 + 缺失标注）
 
-> 说明：原文无标准学术 figure 编号，这里按“可提取数字/设置/结果”整理。
+> 说明：原文非学术论文，几乎无标准 figure 编号；本节按“真图链 + 可核数字”重建。
 
-### 3.1 市场与增长侧数字
-- 发布后“1 天内爆发”，**不到 1 周 GitHub stars 超 70,000**。
-- 对比表中给出：
-  - 传统 OSS 首周 ~500 stars；
-  - Clawdbot/OpenClaw 首周 **9,200+**（约 **18x**）。
-- Discord 社区：**8.9k+**（文中写 instant explosion）。
-- 插件生态形成时间：传统“数月” vs OpenClaw **48 小时**。
+### 3.1 Figure 真图链（>=1）
+- **Figure-1（封面图链）**：https://cover.sli.dev  
+  （来自作者公开 Slidev 源 `https://01.me/files/clawdbot/slides.md` 的 `background` 字段）
+- **Figure-2（Slidev 图标链）**：https://cdn.jsdelivr.net/gh/slidevjs/slidev/assets/favicon.png
 
-### 3.2 成本与资源侧数字
-- Claude Cowork 订阅层级：**$20/月** 与 **$100/月**。
-- 文中估算 $100 档可对应约 **$300–400 token value**（重度用户更划算）。
-- Computer Use 代价示例：Claude 跑 **30 分钟约 $10** token 成本。
-- 本地算力替代：文中举例“20,000 RMB 硬件投入可选，但并非必要”；也给出低价云替代 **19.9 RMB/月** 级别（场景化陈述）。
+### 3.2 关键数字（文章/配套 slides 可抽取）
+- GitHub 爆发：**<1 周 70,000+ stars**。  
+- 首周对照：传统 OSS ~500 vs OpenClaw **9,200+**（~18x）。  
+- Discord：**8.9k+**（即时爆发）。  
+- 插件生态成形：传统“数月” vs OpenClaw **48 小时**。  
+- 付费参考：Claude Cowork **$20 / $100** 档；文中估算 $100 档对应约 **$300–400 token value**。  
+- GUI agent 成本示例：Computer Use **30 分钟约 $10**。  
+- 开发叙事数字：**40–50k LOC/天、1.8B tokens/天、1374 commits/天、两个月近百万行代码**。
 
-### 3.3 开发效率与项目演化数字（创始人叙事）
-- 个人开发速度：**40–50k LOC/天**。
-- token 消耗：**1.8B tokens/天**。
-- 单日提交：**1,374 commits/天**。
-- 两个月代码规模接近 **百万行**。
-
-### 3.4 记忆与检索机制设置
-- Memory 检索融合公式：`finalScore = vectorWeight * vectorScore + textWeight * textScore`。
-- 默认权重：**0.7 : 0.3**（向向量语义侧倾斜）。
-- 数据结构：SQLite（files/chunks/chunks_fts/chunks_vec/embedding_cache）。
-
-### 3.5 关键时间线
-- Anthropic Computer Use：**2024-10**。
-- GenSpark Deep Research：**2025-01**；OpenAI Deep Research：**2025-02**。
-- Manus 走红：**2025-03**；被 Meta 收购：**2025-12-30（>$2B）**。
-- Clawdbot 上线：**2026-01-25**；改名 Moltbot：**2026-01-27**；改名 OpenClaw：**2026-01-30**。
-
-### 3.6 原文未给出的关键数字（明确标注缺失）
-- 原文**未给出可复现实验集**（无 benchmark 名称、样本数、任务分布、评估脚本）。
-- 原文**未给出统计显著性**（无置信区间、方差、显著性检验）。
-- 原文**未给出安全攻击评测指标**（如攻击成功率/误杀率/恢复时延）。
+### 3.3 关键缺失（必须标注）
+- **[缺失]** 无公开 benchmark 名称与任务分布。  
+- **[缺失]** 无样本规模、统计方差、显著性检验。  
+- **[缺失]** 无统一安全评测指标（攻击成功率/误报率/恢复时延）。  
+- **[缺失]** 无跨模型一致性测试细节（工具调用协议差异、回归测试）。
 
 ---
 
 ## 4) Experiments（按“系统证据审读”重构）
 
-### 4.1 Experimental setup（原文可提取）
-- **系统类型：** 案例式系统研究，不是对照实验论文。  
-- **架构设置：** 四层（Gateway/Core/Memory/Execution）。  
-- **核心 Agent loop：** ReAct 风格，工具调用失败回灌 LLM 自纠。  
-- **核心工具集：** Read / Write / Edit / Find / Search / Python / Bash（7 工具）。  
-- **Memory 设置：** Markdown 文件（MEMORY.md + daily logs + AGENTS.md）+ SQLite hybrid retrieval（FTS5 + 向量检索 + 0.7:0.3 融合）。  
-- **执行设置：** Browser 侧偏 Playwright DOM 交互，不完全依赖纯截图坐标。  
-- **安全设置：** Docker 沙箱 + 高危命令拦截 + 人在回路 APPROVE + `moltbot security audit`。
+### 4.1 Experimental setup（可还原设置）
+- 系统类型：案例式系统报告，非控制变量实验。  
+- 架构：Gateway/Core/Memory/Execution 四层。  
+- 运行循环：ReAct 风格工具调用，错误回灌模型做自纠。  
+- 工具核心：Read / Write / Edit / Find / Search / Python / Bash（7 工具）。  
+- 记忆：Markdown 文件 + SQLite FTS5 + 向量检索，融合权重 **0.7:0.3**。  
+- 执行：浏览器动作强调 DOM 能力（Playwright），非纯视觉点击。  
+- 安全：Docker、HITL `APPROVE`、高危命令拦截、安全审计命令。
 
-### 4.2 Main result table（证据类型结果，不是学术 SOTA 表）
-| 维度 | Baseline/对照 | OpenClaw 报告值 | Delta/结论 |
+### 4.2 Main result table（有数字 + 缺失并列）
+| 维度 | 对照/基线 | OpenClaw 报告值 | 备注 |
 |---|---:|---:|---|
-| GitHub 首周 stars | ~500（传统 OSS） | 9,200+ | ~18x |
-| GitHub 一周内累计 | 原文未统一给对照 | 70,000+（<1 week） | 超常扩散 |
-| 插件生态成形时间 | 数月 | 48h | 显著加速 |
-| Discord 社区规模 | 渐进增长（传统） | 8.9k+（快速涌入） | 爆发式 |
-| 重度付费成本参考 | Cowork $100/月 | 对应约$300–400 token value | 重度用户订阅有优势 |
-| Computer Use 推理成本 | 原文未给系统对照 | ~ $10 / 30 min（Claude 示例） | GUI agent 成本高 |
-| 记忆检索权重 | 原文无他法对照 | vector:text = 0.7:0.3 | 语义优先+关键词补偿 |
+| 首周 GitHub stars | ~500（传统 OSS） | 9,200+ | ~18x |
+| 一周内累计 stars | [缺失统一基线] | 70,000+ | 爆发扩散 |
+| 插件生态成形时间 | 数月 | 48h | 社区裂变 |
+| Discord 社区规模 | 渐进增长 | 8.9k+ | 即时爆发 |
+| Cowork 成本参考 | $20/$100 月费 | $100≈$300–400 token value | 重度用户更划算 |
+| GUI 代理推理成本 | [缺失系统对照] | ~$10/30min（示例） | 成本偏高 |
+| 检索融合策略 | [缺失他法对照] | 0.7(vector):0.3(text) | 语义优先 |
 
-### 4.3 Analysis（至少3条：现象 + 解释 + 我的判断）
-1) **现象：** 文中把“增长爆发”与“主权叙事”强绑定（70k<1周、48h插件爆发、8.9k+社群）。  
-   **解释（作者）：** 用户对订阅疲劳+封闭生态不满，被 BYOK + 开源可改 + 本地可控触发。  
-   **我的判断：** 这个解释基本成立，但“主权”与“传播”之间可能还有第三变量（创始人影响力、媒体放大、争议话题）。若要严谨，需要拆分归因做 A/B 级别证据。
+### 4.3 Case studies（硬要求：case >= 2）
+**Case-1：Manus 的“能力证明—闭源回收”路径**  
+- 现象：Manus 在 2025-03 爆红，2025-12-30 被 Meta 以 >$2B 收购并闭源化。  
+- 意义：验证“通用 Agent”有强商业需求，但核心能力会被封闭生态吸收。  
+- 对本文命题的支撑：OpenClaw 被定位为该趋势的开源反向样本。
 
-2) **现象：** 架构上强调 Coding Agent 是总核心，Deep Research/Computer Use 是外延。  
-   **解释（作者）：** 代码与文件系统是最稳定、最高效、最通用的行动空间；很多 GUI 任务最终可降解为代码生成。  
-   **我的判断：** 方向对，尤其在文档生成/自动化流水线中优势明显；但在高噪声现实 UI、跨端权限系统里，纯 coding-core 仍需配强鲁棒 GUI policy 与恢复机制。
+**Case-2：Mac Mini 效应与 iMessage 物理桥梁**  
+- 现象：社区出现显著 Mac Mini 采购潮（尤其 M4），文章将其与 iMessage 接入需求绑定。  
+- 机制：Apple 生态下消息能力 + 本地运行需求叠加，导致“Agent 部署=硬件采购”联动。  
+- 启示：主权路线不仅是软件议题，也会重塑硬件选择与家庭算力形态。
 
-3) **现象：** Memory 采用 Markdown + Git + SQLite hybrid，而非“纯向量库神化”。  
-   **解释（作者）：** 人类可读可改、具时间线、可版本回滚，且可混合检索补足召回。  
-   **我的判断：** 这是本文最有工程价值的一点。对长期协作 Agent 来说，可审计性往往比“向量召回指标极致”更关键；但原文没给长期漂移、冲突记忆、遗忘策略的量化评估。
+**Case-3：更名风波与 $CLAWD 诈骗事件（补充）**  
+- 现象：Clawdbot→Moltbot→OpenClaw 更名期间，旧账号名被秒抢注并用于假币诈骗。  
+- 启示：开源项目的品牌/分发链路也是安全面，影响社区信任与采用成本。
 
-4) **现象：** 安全章节语气很重，甚至明确不建议裸跑在个人机器。  
-   **解释（作者）：** Prompt injection、供应链、端口暴露都是真实高危面；全权限 Agent 风险与能力同升。  
-   **我的判断：** 这部分是“现实主义”加分项。问题在于缺少红队数据（攻击成功率、拦截率、误报率），导致建议可执行但不可度量。
+### 4.4 Analysis（>=3：现象 + 解释 + 判断）
+1) **现象：** “70k<1周 + 48h 插件爆发 + 8.9k 社群”被解释为主权叙事胜利。  
+   **解释：** 用户对订阅疲劳和封闭约束反弹，BYOK + 可改源码触发迁移。  
+   **判断：** 方向成立，但需控制“创始人影响力/媒体放大/争议传播”这些混杂变量。
 
-5) **现象：** 多模型兼容被当作主权的一部分（Claude/GPT/Gemini/DeepSeek/Ollama/OpenRouter）。  
-   **解释（作者）：** 反绑定可降本、可规避支付与地区限制，并支持离线场景。  
-   **我的判断：** 商业与部署层面非常实用；但多模型一致性（工具调用协议差异、长上下文风格漂移）在原文缺少工程细节与测试数据。
+2) **现象：** 文中强调 Coding Agent 是三合一系统的核心执行引擎。  
+   **解释：** 代码与文件系统动作成本低、表达力高，很多 GUI 任务可降解为代码生成。  
+   **判断：** 工程上非常实用；但在高动态 UI 与跨权限系统中，仍需更强恢复策略与风险门控。
+
+3) **现象：** Memory 选择 Markdown + Git + SQLite hybrid，而非纯向量库。  
+   **解释：** 可读可改可回滚，比“黑箱召回”更适配长期协作与审计。  
+   **判断：** 这是本文最有落地价值的设计；但缺长期漂移、冲突记忆与遗忘策略的量化结果。
+
+4) **现象：** 安全章节语气强烈（不建议裸跑个人机）。  
+   **解释：** 全权限 Agent 面临 prompt injection、插件供应链、端口暴露等复合风险。  
+   **判断：** 风险判断靠谱，但缺可比较的安全基准数据，当前更像“操作建议”而非“可验证证据”。
 
 ---
 
 ## 5) Why it matters for our work
-- 对我们做 Agent memory/long-context 系统非常直接：
-  1) **Memory 可审计优先**：把“可读可改可回滚”当作一等公民，不把记忆黑箱化。  
-  2) **Long-context 要有压缩闭环**：会话压缩 + 事实抽取 + 日志归档，替代“无限堆上下文”。  
-  3) **多模态执行应分层**：DOM/结构化动作优先，视觉动作兜底，高危动作强制 HITL。  
-- 这篇更像“架构宣言 + 工程路线图”，不是“算法论文”；对产品系统设计启发大于对学术 SOTA 追赶。
+- **Agent memory：** “可审计记忆”优先于“只追召回率”，适合长期人机协作。  
+- **Long-context：** 依赖压缩-归档-检索闭环，而不是无限堆上下文。  
+- **Multimodal execution：** 结构化动作（DOM/工具）优先，视觉点击兜底，高危动作强制 HITL。  
+- 对我们而言，这篇更像“系统路线图输入”，不是“算法上限证明”。
 
 ---
 
-## 6) Actionable next steps（3条，可执行；面向 agent memory / long-context / multimodal RL）
-1) **Memory（两周内可做）**  
-   落地 `MEMORY.md + daily logs + conflict ledger` 三文件制，并在检索层实现 `FTS + vec` 融合（先用 0.7:0.3 起步）；每周做一次“可审计回放”，记录错误记忆修正耗时与回滚次数。
-
-2) **Long-context（本月可做）**  
-   上线“压缩-再注入”流水线：当会话超过阈值（如 token/轮次）自动触发摘要，将“稳定事实、临时计划、待办状态”分桶写入；新增 1 份漂移评测集，监控摘要后任务成功率变化。若缺指标，先定义并持续采集。
-
-3) **Multimodal RL / policy（季度可做）**  
-   构建小规模 GUI+DOM 混合轨迹集：同任务分别走“结构化动作优先”和“纯视觉点击”两条策略，比较成本、成功率、恢复步数；把高危动作（删除/转账/外发）统一纳入 HITL gate，逐步训练 reward model 约束“低风险先行”。
+## 6) Actionable next steps（3条）
+1. **Memory 侧（2 周）**：上线 `MEMORY.md + daily logs + conflict ledger`，检索先用 0.7:0.3 融合；每周做一次审计回放。  
+2. **Long-context 侧（1 个月）**：实现会话阈值触发压缩，分桶写入“稳定事实/临时计划/待办状态”，跟踪摘要后成功率与偏移。  
+3. **执行策略侧（季度）**：构建 DOM-first vs Vision-first 双策略对照集，记录成功率、成本、恢复步数，并统一高危动作审批门。
 
 ---
 
 ## 7) 评分解释（维持原倾向）
-- **为什么是 3/5：**
-  - 优点：系统视角完整、工程细节密、观点鲜明（特别是主权三分法与 Markdown 记忆路线）。
-  - 扣分点：大量关键结论依赖案例叙事与经验数字，缺乏可复现实验和严格统计。
-- **为什么不升分：**
-  - 原文不是实验论文，缺 benchmark protocol、攻击评测、显著性分析；在“证据强度”上不足以支持更高分。
-- **结论：** 保持 **★★★☆☆** 最稳妥。
+- **最终评分：★★★☆☆（3/5）**。  
+- **给 3 分的理由：**
+  - 主权三分法清晰，工程拆解具体；
+  - 记忆与执行层有较强可迁移价值；
+  - 对产品系统设计启发明显。  
+- **不升分的理由：**
+  - 证据仍以案例与叙事为主；
+  - 缺 benchmark protocol 与统计检验；
+  - 安全评估缺量化红队数据。  
+
+> 结论：这是一篇**方向强、工程强、证据强度中等**的系统研究型博客，适合用于架构决策，不适合当作效果上限证据。
