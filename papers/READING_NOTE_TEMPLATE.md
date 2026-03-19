@@ -33,12 +33,15 @@
 ### P — Proposal
 - 
 
-## 3) Figure 区（至少 1 张）
-- 图1（方法或主结果）：
-- 图2（可选，分析图）：
-- 图3（可选，ablation/热力图）：
+## 3) Figure 区（至少 1 张，抓主图，不跳过）
+- 图1（方法或主结果）：`![fig1](<URL>)` + 1-2 句解释
+- 图2（可选，分析图）：`![fig2](<URL>)` + 1-2 句解释
+- 图3（可选，ablation/热力图）：`![fig3](<URL>)` + 1-2 句解释
 
-> 图策略：优先 arXiv HTML 直链；若 HTML 不可用，再用 arXiv source 图并存到 `assets/<alias>/`。
+> 图策略（强制）：
+> 1) 优先 arXiv HTML 直链（如 `https://arxiv.org/html/<id>v1` 对应图片资源）；
+> 2) 若 HTML 不可用，使用 arXiv source 图并存到 `assets/<alias>/`，在笔记中放相对路径；
+> 3) 不能只写图意，不给链接/图片。
 
 ## 4) Experiments（必须含具体数字）
 ### 4.1 Experimental setup

@@ -47,14 +47,17 @@
 
 ## 3 Figure 区（抓主图，不跳过）
 ### Figure 1：Skill 四元组内部结构
+![fig1](https://arxiv.org/html/2602.20867v1/figures/skill-anatomy/figure.png)
 - 输入观测 O（和目标 G），先过适用性条件 C，再由策略 π 产生活动作/子技能调用，终止条件 T 决定何时退出，R 提供可调用接口。  
 - **意义：** 把“可执行性+可复用性+可组合性”明确拆成可检查部件。
 
 ### Figure 2：Skill 生命周期
+![fig2](https://arxiv.org/html/2602.20867v1/figures/skill-lifecycle/figure.png)
 - 7 阶段：discovery → practice/refinement → distillation → storage → retrieval/composition → execution → evaluation/update，并包含反馈回路。  
 - **意义：** 强调 skill 是持续演化资产，而非一次性 prompt artifact。
 
 ### Figure 3：七种设计模式（按自主性轴）
+![fig3](https://arxiv.org/html/2602.20867v1/figures/pattern-spectrum/figure.png)
 - 从 metadata progressive disclosure 到 meta-skills，自主性逐步增强；marketplace 分发模式跨越全轴。  
 - **意义：** 可直接映射到工程中的“能力封装与发布策略”。
 
