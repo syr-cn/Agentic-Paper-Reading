@@ -4,6 +4,14 @@
 > 目标：避免流水摘要，输出“可决策、可复用”的研究笔记。
 > 术语约定：**DNL = Deep Note & List**。其中 `Deep Note` 指单篇深读笔记，`List` 指 readinglist 索引更新。
 
+## DNL 写作基线（必须同时满足）
+1. **需求文档对齐**：满足本模板 0~7 全结构要求。
+2. **Case 对齐**：至少参考 1-2 篇高质量历史笔记的写法（建议优先）：
+   - `papers/2026-03-11_evo-memory.md`
+   - `papers/2026-03-13_reasoning-judge.md`
+   - `papers/2026-03-19_arise.md`
+3. **Figure 不可空写**：至少 1 张真实图链（或本地 assets 图片）+ 1-2 句解释。
+
 ## 0) Metadata
 - **Title:** 
 - **Alias:** 
