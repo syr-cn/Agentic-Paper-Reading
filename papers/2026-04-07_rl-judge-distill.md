@@ -48,11 +48,11 @@
 
 ## 3) Figure 区
 
-- 图1（学习曲线 — PPO semi-supervised）：`![fig1](https://arxiv.org/html/2604.02621v1/x1.png)` — 展示不同 reward 组合下的 GSM8K 训练曲线，semi-supervised 设置（λ=0.5, μ=0.25, ρ=0.25）在训练后期持续攀升至 ~40%，显著优于纯 RLVR baseline（~30%）。
+- 图1（学习曲线 — PPO semi-supervised）：![fig1](https://arxiv.org/html/2604.02621v1/x1.png) — 展示不同 reward 组合下的 GSM8K 训练曲线，semi-supervised 设置（λ=0.5, μ=0.25, ρ=0.25）在训练后期持续攀升至 ~40%，显著优于纯 RLVR baseline（~30%）。
 
-- 图2（PPO vs GRPO 对比）：`![fig2](https://arxiv.org/html/2604.02621v1/x2.png)` — GRPO 在相同 reward 配置下比 PPO 提供更大的性能增益（37.30% vs 35.10%），且收敛更快。
+- 图2（PPO vs GRPO 对比）：![fig2](https://arxiv.org/html/2604.02621v1/x2.png) — GRPO 在相同 reward 配置下比 PPO 提供更大的性能增益（37.30% vs 35.10%），且收敛更快。
 
-- 图3（三路 reward 曲线）：`![fig3](https://arxiv.org/html/2604.02621v1/x3.png)` — Verifiable / Judge / Rerank 三路 reward 均在训练中稳定上升并趋于平稳，表明三种 reward signal 互相兼容、训练稳定。
+- 图3（三路 reward 曲线）：![fig3](https://arxiv.org/html/2604.02621v1/x3.png) — Verifiable / Judge / Rerank 三路 reward 均在训练中稳定上升并趋于平稳，表明三种 reward signal 互相兼容、训练稳定。
 
 ---
 

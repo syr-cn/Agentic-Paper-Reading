@@ -50,7 +50,7 @@
 
 ## 3) Figure 区
 
-- 图1（ByteRover 系统架构）：`![fig1](https://arxiv.org/html/2604.01599v1/extracted/6229453/figures/byterover_architecture.png)`
+- 图1（ByteRover 系统架构）：![fig1](https://arxiv.org/html/2604.01599v1/extracted/6229453/figures/byterover_architecture.png)
   ByteRover 三层架构：(1) Agent Layer — curate 和 search_knowledge 作为 LLM reasoning loop 的 first-class tools；(2) Execution Layer — 查询执行器（5-tier progressive retrieval）+ 沙箱 curation 环境；(3) Knowledge Layer — Context Tree + BM25 全文索引 + query cache，全部基于本地文件系统，零外部依赖。客户端（TUI、CLI、MCP）通过 Socket.IO 连接守护进程。
 
 ---
