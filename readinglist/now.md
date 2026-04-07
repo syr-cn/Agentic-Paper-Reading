@@ -1,6 +1,11 @@
 # Now Reading Queue
 
-## Must-read (this week)
+## Must-read (this week — 2026-04-07 batch)
+- [Reasoning-Shift](../papers/2026-04-07_reasoning-shift.md) — context 默默缩短 reasoning chain 50%，对 agentic reasoning 有直接警示 ✅ DNL done
+- [BCR](../papers/2026-04-07_bcr.md) — batching 激活高密度推理，token 省 92%，paradigm-shifting ✅ DNL done
+- [ByteRover](../papers/2026-04-07_agent-native-memory.md) — 层次化 agent memory，与 ReMemR1 直接可比 ✅ DNL done
+
+## Previous must-read
 - [ARISE](../papers/2026-03-19_arise.md) — policy-driven skill selection + evolving skill library；和当前 memory/agent RL 主线直接相关。
 - [01me-Distillation-Notes](../papers/2026-03-19_01me-distillation-notes.md) — context asset + writer-reviewer loop；对系统化反思闭环设计有直接启发。✅（2026-03-19 deep note synced）
 
