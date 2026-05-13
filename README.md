@@ -1,109 +1,85 @@
 # Agentic Paper Reading
 
-> A research notebook for **agent memory / continual learning / retrieval reasoning** with dashboard-style navigation.
-
-<p align="left">
-  <img alt="Notes" src="https://img.shields.io/badge/Total%20Notes-28-4c1?style=flat-square" />
-  <img alt="Reading Lists" src="https://img.shields.io/badge/Reading%20Lists-5-06b6d4?style=flat-square" />
-  <img alt="This Month" src="https://img.shields.io/badge/2026--03-28%20notes-7c3aed?style=flat-square" />
-  <img alt="Updated" src="https://img.shields.io/badge/Last%20Updated-2026--03--23-111827?style=flat-square" />
-</p>
+> Research notebook for **agentic memory / long-horizon reasoning / RL for agents / skill evolution**.
+> Maintained by Yaorui Shi (史曜睿) + Twilight 🦄✨
 
 ## 📊 Project Snapshot
 
 | Metric | Value |
 |---|---:|
-| Total notes | **28** |
-| Total reading lists | **5** |
-| Notes added in 2026-03 | **28** |
-| Last updated | **2026-03-23** |
+| Total paper notes | **39** |
+| Reading lists | **5** |
+| Last updated | **2026-05-13** |
 
 ---
 
 ## 🧭 Reading Lists
 
-| List | Focus | #Notes | Last Update | Status |
-|---|---|---:|---|---|
-| [Agent Topic Reading List](readinglist/agent-topic.md) | Deep read on selected Agent papers | 14 | 2026-03-19 | OK |
-| [Agentic Skills Reading List](readinglist/agentic-skills.md) | Skills as Agent capability (survey, methods, benchmark) | 14 | 2026-03-23 | OK |
-| [Blog Topic Reading List](readinglist/blog-topic.md) | High-signal blog analyses mapped to agent research | 8 | 2026-03-12 | OK |
-| [Later Queue](readinglist/later.md) | Backlog queue | 0 | 2026-03-11 | OK |
-| [Now Reading Queue](readinglist/now.md) | Current reading queue | 0 | 2026-03-11 | OK |
+| List | Focus | Papers |
+|---|---|---:|
+| [Memory & Long-Horizon](readinglist/memory-long-horizon.md) | Memory systems + evaluation + long-context reasoning | 11 |
+| [Skill](readinglist/skill.md) | Skill evolution, skill benchmark, continual learning | 11 |
+| [On-Policy Distillation](readinglist/on-policy-distillation.md) | RL training, GRPO, on-policy data evolution | 7 |
+| [General LLM/Agent](readinglist/general-llm-agent.md) | Tool use, harness, agent benchmark/safety | 6 |
+| [Blog](readinglist/blog-topic.md) | High-signal blog analyses | 8 |
 
 ---
 
-## 🗓️ Notes by Time (Year / Month)
+## 📐 Scoring & Evaluation
 
-### By Year
+**双维度评分体系（2026-05-13）**：
+- **Type**: A (RL Training) / B (Harness Engineering) / C (Benchmark)
+- **Relevance**: 话题相关性 1-5
+- **Quality**: 论文质量 1-5（按 Type 差异化标准）
 
-| Year | #Notes |
-|---|---:|
-| 2026 | 28 |
+三个质量指标：
+1. 作者/机构影响力
+2. 叙事与方法
+3. 实验与现象（必须有数字）
 
-### By Month
-
-| Month | #Notes |
-|---|---:|
-| 2026-03 | 28 |
-
----
-
-## 🆕 Recent Additions (Latest 10)
-
-| Date | Alias | Note |
-|---|---|---|
-| 2026-03-23 | Comp-RL | [papers/2026-03-23_comp-rl.md](papers/2026-03-23_comp-rl.md) |
-| 2026-03-23 | TRT | [papers/2026-03-23_trt.md](papers/2026-03-23_trt.md) |
-| 2026-03-23 | ExGRPO | [papers/2026-03-23_exgrpo.md](papers/2026-03-23_exgrpo.md) |
-| 2026-03-19 | ARISE | [papers/2026-03-19_arise.md](papers/2026-03-19_arise.md) |
-| 2026-03-19 | 01me-Distillation-Notes | [papers/2026-03-19_01me-distillation-notes.md](papers/2026-03-19_01me-distillation-notes.md) |
-| 2026-03-18 | OEL | [papers/2026-03-18_oel.md](papers/2026-03-18_oel.md) |
-| 2026-03-17 | BiCC-RCC | [papers/2026-03-17_bicc-rcc-grpo.md](papers/2026-03-17_bicc-rcc-grpo.md) |
-| 2026-03-17 | XSkill | [papers/2026-03-17_xskill.md](papers/2026-03-17_xskill.md) |
-| 2026-03-17 | Think-While-Watching | [papers/2026-03-17_think-while-watching.md](papers/2026-03-17_think-while-watching.md) |
-| 2026-03-13 | Auto Rl Env | [papers/2026-03-13_auto-rl-env.md](papers/2026-03-13_auto-rl-env.md) |
-
+详见 [PAPER_PREFERENCES.md](PAPER_PREFERENCES.md) 和 [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md)。
 
 ---
 
-## 🧩 Repository Structure
+## 🧠 Research Guide
 
-- `PAPER_PREFERENCES.md` — paper selection taste and ranking criteria
-- `papers/` — structured reading notes (paper + blog)
-- `readinglist/` — topic lists and prioritized queues
-- `notes/` — templates and note scaffolds
-- `weekly/` — weekly synthesis and trend tracking
+[RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) — 科研脉络整理，包含：
+- 三类方法的关注框架（Training / Harness / Benchmark）
+- 当前领域热点问题
+- 评判标准的设计哲学
+- 作为之后阅读笔记写作的 Standard
 
-## 🔧 Maintenance Policy (README Dashboard)
+---
 
-- Keep this dashboard updated whenever new notes or reading lists are added.
-- Ensure each reading list alias points to an existing note file.
-- Keep metrics lightweight, readable, and decision-oriented.
+## 🗂️ Repository Structure
 
+```
+├── PAPER_PREFERENCES.md    ← 论文选择偏好 & 双维度评分框架
+├── RESEARCH_GUIDE.md       ← 科研脉络 & 写作标准
+├── papers/                 ← 结构化阅读笔记（一篇一文件）
+│   └── READING_NOTE_TEMPLATE.md
+├── readinglist/            ← 按话题分类的论文列表
+│   ├── general-llm-agent.md
+│   ├── memory-long-horizon.md
+│   ├── on-policy-distillation.md
+│   ├── skill.md
+│   ├── blog-topic.md
+│   ├── TEMPLATE.md
+│   └── _archive/           ← 旧 list 归档
+├── daily/                  ← 每日论文推荐记录
+├── weekly/                 ← 周报/趋势追踪
+├── assets/                 ← 图片资源
+├── scripts/                ← HTML 生成脚本
+└── templates/              ← HTML 模板
+```
 
-## 🧱 Reading Pipeline Standard (Insight-first)
+---
 
-From 2026-03-18 onward, all paper notes and reading list summaries follow this pipeline:
+## 🔧 Reading Pipeline Standard
 
-1. **Source extraction priority**
-   - Prefer arXiv HTML for structure + figure links.
-   - If HTML unavailable, fallback to arXiv source (`e-print`) for LaTeX sections and figure files.
-
-2. **Figure policy**
-   - Prefer direct arXiv HTML figure links.
-   - If HTML unavailable, localize source figures to `assets/<paper-alias>/`.
-
-3. **Main result table policy**
-   - Must include concrete numeric comparison (baseline / proposed / delta).
-   - Avoid vague claims without numbers.
-
-4. **Analysis writing policy**
-   - Use `现象 + 解释` format for every analysis item.
-   - Add `【标注】` only when inserting personal interpretation or disagreement.
-
-5. **Scoring policy (1+2+2)**
-   - Base 1 + Quality (0~2) + Observation (0~2)
-   - Always explain "why not higher score".
-
-6. **Sync policy**
-   - Updating a paper note requires syncing corresponding reading list summary style.
+1. **Source extraction**: 优先 arXiv HTML → fallback PDF
+2. **Figure policy**: 至少 1 张带链接的图 + 解释
+3. **Main result table**: 必须有 baseline / proposed / delta 数字
+4. **Analysis writing**: 「现象 + 解释」格式；个人判断用 `【标注】`
+5. **Scoring**: 双维度（Rel X/5 + Qual Y/5）+ "Why Not Higher"
+6. **Sync**: 更新笔记后同步 readinglist summary
