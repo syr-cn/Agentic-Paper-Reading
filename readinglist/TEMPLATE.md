@@ -1,31 +1,42 @@
 # Reading List Table Template
 
-> 用法：每篇论文一行；`Alias` 列请写成**指向具体阅读笔记的超链接**（例如 `[Evo-Memory](../papers/2026-03-11_evo-memory.md)`）。
+> 用法：每篇论文一行；`Alias` 列请写成**指向具体阅读笔记的超链接**。
+> 
+> **评分体系（2026-05-13 双维度版）**：
+> - **Type**: A = RL Training / B = Harness Engineering / C = Benchmark
+> - **Rel**: 话题相关性 1-5（5=核心命中, 4=强相关, 3=有启发, 2=边缘, 1=无关）
+> - **Qual**: 论文质量 1-5（按 Type 分别评判，详见 RESEARCH_PREFERENCES.md）
 
 ## Markdown 表格模板
 
-| Alias (link to note) | Title | Source | Institution | Benchmarking | ⭐ | Figure 1 | Summary |
-|---|---|---|---|---|---:|---|---|
-| [Paper-Alias](../papers/YYYY-MM-DD_short-title.md) | Paper Title | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | First: Org A; High-impact: Org B | Benchmark1, Benchmark2 | ★★☆☆☆ | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | 核心发现 |
+| Alias (link to note) | Title | Source | Institution | Type | Rel | Qual | Figure 1 | Summary |
+|---|---|---|---|:---:|:---:|:---:|---|---|
+| [Paper-Alias](../papers/YYYY-MM-DD_short-title.md) | Paper Title | [arXiv 2511](https://arxiv.org/abs/2511.20857) | First: Org A; High-impact: Org B | A | 4 | 3 | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | 核心发现 |
 
-## CSV 表头模板（与上表一致）
+## 字段说明
 
-```csv
-Alias,NoteLink,Title,Source,Institution,Benchmarking,⭐,Figure1,Summary
+| 字段 | 规则 |
+|---|---|
+| **Alias** | `[Alias](相对路径)` 指向阅读笔记，禁止死链 |
+| **Source** | `[arXiv xxxx](url)` 统一用 `/abs/` 链接 |
+| **Institution** | 多机构写 `First: X; High-impact: Y`；中国机构用简称 |
+| **Type** | A = RL Training, B = Harness Engineering, C = Benchmark |
+| **Rel** | 话题相关性 1-5 |
+| **Qual** | 论文质量 1-5 |
+| **Figure 1** | 优先 arXiv HTML 直链；不可得写 `N/A（原因）` |
+| **Summary** | 高信息密度要点，含关键数字，不写空话 |
+
+## 子分类标记（用于 memory-long-horizon.md 等含子类的 list）
+
+在同一个表格文件中，用 `### 子分类名` 分隔不同区块，每个区块各有独立表头：
+
+```markdown
+### Memory Systems
+| Alias | Title | ... |
+
+### Memory Evaluation
+| Alias | Title | ... |
+
+### Long-Horizon & Context
+| Alias | Title | ... |
 ```
-
-> 说明：
-> - `Alias` 在 Markdown 中建议写成 `[Alias](相对路径)`，直接跳到阅读报告。
-> - `Source` 建议写成 `[arxiv xxxx](url)`，便于展示简洁超链接。
-> - `Institution` 规则：若为多机构，写成 `First: <第一机构>; High-impact: <你判断影响力最高机构>`；若 HTML 缺失机构信息，必须继续在 PDF 中查找。
-> - 中国境内机构统一使用简称（如 CAS、BAAI、THU、PKU、SJTU、ZJU、FDU、USTC、HIT、NJU、SEU）。
-> - `Figure 1` 必须显式填写：
->   1) 优先 `https://arxiv.org/html/<id-version>/x1.png`；
->   2) 若不可用，尝试 HTML 中首个论文插图资源（如 `figures/...`）；
->   3) 若仍不可得，写 `N/A（arXiv 未提供可用 HTML Figure 资源）`。
-
-## 示例（参考 Evo-Memory）
-
-| Alias (link to note) | Title | Source | Institution | Benchmarking | ⭐ | Figure 1 | Summary |
-|---|---|---|---|---|---:|---|---|
-| [Evo-Memory](../papers/2026-03-11_evo-memory.md) | Evo-Memory: Benchmarking LLM Agent Test-time Learning with Self-Evolving Memory | [arxiv 2511](https://arxiv.org/pdf/2511.20857) | First: DeepMind; High-impact: DeepMind | MMLU-Pro, GPQA-Diamond, AIME24/25, ToolBench, AlfWorld, BabyAI, ScienceWorld | ★★★★★ | ![fig1](https://arxiv.org/html/2511.20857v1/x1.png) | LLM Agent 的记忆不应只是“回忆过去说了什么”，而应能在部署过程中持续从经验中学习并自我演化，实验证明这种自演化记忆（尤其在多轮任务中）能大幅提升表现和效率。 |
