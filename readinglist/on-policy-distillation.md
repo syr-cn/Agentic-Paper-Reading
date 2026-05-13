@@ -52,6 +52,8 @@ On-Policy Distillation (OPD) 是介于纯 SFT 和纯 RL 之间的训练范式：
 | [OPSDC](../papers/2026-05-13_opd-survey-notes.md#opsdc) | OPSDC: On-Policy Self-Distillation for Reasoning Compression | [arXiv 2603.05433](https://arxiv.org/abs/2603.05433) | First: N/A; High-impact: N/A | A | 3 | 3 | N/A | 极简方案："be concise" instruction 做 teacher → token 减 57-59% + accuracy +9-16pp (Qwen3-8B/14B MATH-500)；机制未知但有效。 |
 | [OEL](../papers/2026-03-18_oel.md) | Online Experiential Learning for Language Models | [arXiv 2603.16856](https://arxiv.org/abs/2603.16856) | First: N/A; High-impact: N/A | A | 4 | 4 | [Fig.1](https://arxiv.org/html/2603.16856v1/figures/oel-overview.pdf) | 经验抽取后再做 on-policy 蒸馏显著优于直接吃原始轨迹（Sokoban consolidate 21.4 vs 7.8）；self-policy 经验优于更大教师经验。 |
 | [ExGRPO](../papers/2026-03-23_exgrpo.md) | ExGRPO: Learning to Reason from Experience | [arXiv 2510.02245](https://arxiv.org/abs/2510.02245) | First: U Macau; High-impact: Shanghai AI Lab | A | 4 | 4 | ![fig1](https://arxiv.org/html/2510.02245v1/x1.png) | 首个系统研究 RLVR 经验价值：中等难度+低熵轨迹是最优来源；bucketed replay + entropy selection 在 5 模型上 +3.5/+7.6 (ID/OOD)。 |
+| [SDFT](../papers/2026-05-13_opd-survey-notes.md#sdft) | SDFT: Self-Distillation Enables Continual Learning | [arXiv 2601.19897](https://arxiv.org/abs/2601.19897) | First: N/A; High-impact: N/A | A | 3 | 3 | N/A | 用 in-context learning 将 off-policy demo 转为 on-policy signal → continual learning 不灾难性遗忘。ICL 能力弱的小模型可能失效；场景有限（仅测试几个 task sequence）。 |
+
 
 ### KL Direction & Training Stability
 
@@ -61,6 +63,9 @@ Forward vs Reverse KL 的选择、稳定性问题、failure mode 分析。
 |---|---|---|---|:---:|:---:|:---:|---|---|
 | [Revisiting-OPD](../papers/2026-05-13_opd-survey-notes.md#revisiting-opd) | Revisiting On-Policy Distillation: Empirical Failure Modes and Simple Fixes | [arXiv 2603.25562](https://arxiv.org/abs/2603.25562) | First: N/A; High-impact: N/A | C | 4 | 4 | N/A | 首次系统识别 3 个 OPD failure modes（imbalanced signal, unreliable teacher on OOD prefix, tokenizer mismatch）；truncated reverse-KL + top-p sampling + special-token masking。 |
 | [BiCC-RCC](../papers/2026-03-17_bicc-rcc-grpo.md) | When Right Meets Wrong: Bilateral Context Conditioning with Reward-Confidence Correction for GRPO | [arXiv 2603.13134](https://arxiv.org/abs/2603.13134) | First: N/A; High-impact: N/A | A | 3 | 3 | [Fig.1](https://arxiv.org/html/2603.13134/x1.png) | 将 GRPO 组内对错结构显式条件化 + 协方差修正 baseline；价值在降方差与收敛稳定。 |
+| [Veto](../papers/2026-05-13_opd-survey-notes.md#veto) | Veto: Stable On-Policy Distillation through Adaptive Target Reformulation | [arXiv 2601.07155](https://arxiv.org/abs/2601.07155) | First: N/A; High-impact: N/A | A | 3 | 2 | N/A | Geometric bridge in logit space 连接 teacher-student 分布；β decay 从 exploration→exploitation。实验规模太小（0.5B-2B），理论与实践矛盾。 |
+| [Entropy-Aware-OPD](../papers/2026-05-13_opd-survey-notes.md#entropy-aware) | Entropy-Aware On-Policy Distillation of Language Models | [arXiv 2603.07079](https://arxiv.org/abs/2603.07079) | First: N/A; High-impact: Arcee AI | A | 4 | 3 | N/A | 按 teacher token-level entropy 动态切换 Forward/Reverse KL；Qwen3-4B Pass@8 +5.05。阈值 τ 是 fragile hyperparameter。 |
+
 
 ### Exploration & Curriculum
 
@@ -71,6 +76,8 @@ Forward vs Reverse KL 的选择、稳定性问题、failure mode 分析。
 | [POPE](../papers/2026-05-13_opd-survey-notes.md#pope) | POPE: Learning to Reason on Hard Problems via Privileged On-Policy Exploration | [arXiv 2601.18779](https://arxiv.org/abs/2601.18779) | First: CMU; High-impact: Google | A | 4 | 4 | N/A | 发现 Ray Interference（混合简单难题训练有害）；用 oracle prefix 做 privileged exploration 引导 RL 在难题上获得 non-zero reward；guided capability 可 transfer 回无引导设置。 |
 | [TRT](../papers/2026-03-23_trt.md) | Test-time Recursive Thinking | [arXiv 2602.03094](https://arxiv.org/abs/2602.03094) | First: MSR; High-impact: MSR | B | 3 | 4 | N/A | 无外部反馈的 test-time 自改进：Generate-Select-Reflect；失败知识 > 成功知识，depth > breadth。 |
 | [ICRL](../papers/2026-03-12_icrl-tool-use.md) | In-Context Reinforcement Learning for Tool Use | [arXiv 2603.08068](https://arxiv.org/abs/2603.08068) | First: NUS; High-impact: UCB | A | 3 | 3 | N/A | Rollout 内 few-shot 课程退火替代 cold-start SFT；验证 RL-only 学稳工具调用。 |
+| [Golden-Goose](../papers/2026-05-13_opd-survey-notes.md#golden-goose) | Golden Goose: A Simple Trick to Synthesize Unlimited RLVR Tasks from Unverifiable Internet Text | [arXiv 2601.22975](https://arxiv.org/abs/2601.22975) | First: NVIDIA; High-impact: UW (Yejin Choi) | A | 3 | 3 | N/A | 将非验证文本转为 MCQ fill-in-the-middle → GooseReason-0.7M（70% effective rate vs ProRL 25%）；4B+GooseReason 逼近 Qwen3-30B-Instruct。重依赖 GPT-5 合成；MCQ≠生成能力。 |
+
 
 ### Industrial & Scaling
 
@@ -89,3 +96,16 @@ OPD 在新领域（video, context distillation, continual learning）的应用�
 | Alias (link to note) | Title | Source | Institution | Type | Rel | Qual | Figure 1 | Summary |
 |---|---|---|---|:---:|:---:|:---:|---|---|
 | [OPCD](../papers/2026-05-13_opd-survey-notes.md#opcd) | OPCD: On-Policy Context Distillation for Language Models | [arXiv 2602.12275](https://arxiv.org/abs/2602.12275) | First: Microsoft; High-impact: Microsoft | A | 3 | 3 | N/A | 结合 on-policy distillation + context distillation：将 experiential knowledge / system prompt 内化到模型权重。仅 50 步训练。 |
+| [GAD](../papers/2026-05-13_opd-survey-notes.md#gad) | GAD: Black-Box On-Policy Distillation of Large Language Models | [arXiv 2511.10643](https://arxiv.org/abs/2511.10643) | First: Microsoft; High-impact: Microsoft | A | 3 | 2 | N/A | GAN-based OPD：student=generator, discriminator=co-evolving reward model。唯一 black-box OPD 方案（不需 teacher logits）。唯一评估是 GPT-4o score，无客观 benchmark。 |
+| [Video-OPD](../papers/2026-05-13_opd-survey-notes.md#video-opd) | Video-OPD: Efficient Post-Training of MLLMs for Temporal Video Grounding | [arXiv 2602.02994](https://arxiv.org/abs/2602.02994) | First: Tencent ARC; High-impact: Tencent ARC | A | 2 | 3 | N/A | 将 OPD 应用到 Temporal Video Grounding；Teacher-Validated Disagreement Focusing (TVDF) 优先可靠且高收益样本；compute 仅 GRPO 的 ~20%。仅 TVG 任务验证。 |
+| [VOLD](../papers/2026-05-13_opd-survey-notes.md#vold) | VOLD: Reasoning Transfer from LLMs to Vision-Language Models via On-Policy Distillation | [arXiv 2510.23497](https://arxiv.org/abs/2510.23497) | First: N/A; High-impact: N/A | A | 2 | 3 | N/A | 将 DeepSeek-R1 reasoning 通过 OPD 迁移到 VLM；LLM→VLM 跨模态蒸馏。 |
+| [AlignDistil](../papers/2026-05-13_opd-survey-notes.md#aligndistil) | AlignDistil: Token-Level Language Model Alignment as Adaptive Policy Distillation | [arXiv 2503.02832](https://arxiv.org/abs/2503.02832) | First: N/A; High-impact: N/A | A | 2 | 3 | N/A | 将 RLHF alignment 重构为 token-level adaptive policy distillation；从 DPO 的 implicit policy 蒸馏。 |
+
+### Foundational Works
+
+OPD 领域的奠基性论文。
+
+| Alias (link to note) | Title | Source | Institution | Type | Rel | Qual | Figure 1 | Summary |
+|---|---|---|---|:---:|:---:|:---:|---|---|
+| [MiniLLM](../papers/2026-05-13_opd-survey-notes.md#minillm) | MiniLLM: Knowledge Distillation of Large Language Models | [arXiv 2306.08543](https://arxiv.org/abs/2306.08543) | First: N/A; High-impact: N/A | A | 3 | 4 | N/A | OPD 奠基工作之一：证明 Reverse KL (mode-seeking) 在 LLM distillation 中优于 Forward KL；建立 OPD 的基本范式。 |
+| [GKD](../papers/2026-05-13_opd-survey-notes.md#gkd) | On-Policy Distillation of Language Models: Learning from Self-Generated Mistakes | [arXiv 2306.13649](https://arxiv.org/abs/2306.13649) | First: Google; High-impact: Google | A | 4 | 4 | N/A | Generalized Knowledge Distillation：将 OPD 与 imitation learning 统一；学生在自己的分布上接受 teacher supervision 消除 exposure bias。OPD 领域的 canonical reference。 |
