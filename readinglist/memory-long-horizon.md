@@ -18,6 +18,8 @@
 
 | Alias (link to note) | Title | Source | Institution | Type | Rel | Qual | Figure 1 | Summary |
 |---|---|---|---|:---:|:---:|:---:|---|---|
+| [MemLens](../papers/2026-05-16_memlens.md) | MemLens: Benchmarking Multimodal Long-Term Memory in Large Vision-Language Models | [arXiv 2605.14906](https://arxiv.org/abs/2605.14906) | First: NVIDIA; High-impact: NVIDIA + HKUST | C | 5 | 4 | N/A（HTML 暂未公开） | 首个系统对比 long-context LVLMs vs memory-augmented agents 的多模态 benchmark；789 questions × 5 abilities × 4 lengths；核心发现：前者随 context 退化，后者丢视觉保真度，MSR <30%。 |
+| [MemEye](../papers/2026-05-16_memeye.md) | MemEye: A Visual-Centric Evaluation Framework for Multimodal Agent Memory | [arXiv 2605.15128](https://arxiv.org/abs/2605.15128) | First: Rutgers; High-impact: Princeton (Mengdi Wang) | C | 5 | 4 | ![fig1](https://arxiv.org/html/2605.15128v1/x4.png) | 2D evaluation matrix (X=视觉粒度 scene→pixel, Y=推理深度 atomic→evolving)；13 方法×4 backbone；核心发现：semantic similarity ≠ temporal validity，fine-grained + evolving state 是 compound failure zone。 |
 
 ### Long-Horizon & Context
 
