@@ -13,6 +13,7 @@
 | [ByteRover](../papers/2026-04-07_agent-native-memory.md) | Agent-Native Memory Through LLM-Curated Hierarchical Context | [arXiv 2604.01599](https://arxiv.org/abs/2604.01599) | First: N/A; High-impact: N/A | — | — | — | N/A | LLM 自主整理的层次化 agent 记忆架构，文件级知识图谱 + 渐进检索；与 ReMemR1 方向直接可比。 |
 | [Memory-Forgetting](../papers/2026-04-07_memory-forgetting.md) | Novel Memory Forgetting Techniques for Autonomous AI Agents | [arXiv 2604.02280](https://arxiv.org/abs/2604.02280) | First: N/A; High-impact: N/A | — | — | — | [Fig.1](https://arxiv.org/html/2604.02280v1/arch_abff.png) | 自适应遗忘框架（relevance scoring + temporal decay + budget constraint）防止 agent 记忆无限膨胀；选题好但实验偏弱。 |
 | [MIA](../papers/2026-04-08_mia.md) | Memory Intelligence Agent | [arXiv 2604.04503](https://arxiv.org/abs/2604.04503) | First: N/A; High-impact: N/A | — | — | — | N/A | 双阶段交替 RL（planner+executor）训练 agent 终身记忆；非参数记忆做对比经验 + 参数记忆做长期固化；跨模型一致提升。 |
+| [AgentMemSurvey](../papers/2026-03-08_agent-memory-survey.md) | Memory for Autonomous LLM Agents: Mechanisms, Evaluation, and Emerging Frontiers | [arXiv 2603.07670](https://arxiv.org/abs/2603.07670) | First: HKRIT; High-impact: N/A | C | 5 | 4 | N/A | 2026 唯一 agent memory 专题 survey；3D taxonomy (temporal×substrate×control) + write–manage–read 形式化；10 open challenges（dual-buffer consolidation, causal retrieval, foundation model for memory 等）。alphaXiv: 21 likes。 |
 
 ### Memory Evaluation
 
