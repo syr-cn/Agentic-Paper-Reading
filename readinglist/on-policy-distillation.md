@@ -2,6 +2,8 @@
 
 ## 🧭 领域概览
 
+**Survey Reference:** [OPD Survey — A Brief Overview: On-Policy Self-Distillation in LLMs](https://arxiv.org/abs/2605.18141) (2605.18141) — 系统综述 OPD 全谱, GKD 2023 → OPSD 2026 → DeepSeek-V4。[Awesome-LLM-On-Policy-Distillation](https://github.com/) GitHub curated list.
+
 On-Policy Distillation (OPD) 是介于纯 SFT 和纯 RL 之间的训练范式：让 student 在**自己生成的 rollouts** 上接受 teacher 的 token-level 指导，消除 train-test distribution mismatch。
 
 ### 当前趋势（2025-2026）
@@ -49,6 +51,8 @@ On-Policy Distillation (OPD) 是介于纯 SFT 和纯 RL 之间的训练范式：
 | Alias (link to note) | Title | Source | Institution | Type | Rel | Qual | Figure 1 | Summary |
 |---|---|---|---|:---:|:---:|:---:|---|---|
 | [OPSD](../papers/2026-01-26_opsd.md) | Self-Distilled Reasoner — On-Policy Self-Distillation for LLMs | [arXiv 2601.18734](https://arxiv.org/abs/2601.18734) | First: UCLA; High-impact: UCLA + Meta | A | 4 | 4 | ![fig1](https://arxiv.org/html/2601.18734v1/x1.png) | 同一模型 teacher mode (conditioned on GT CoT) vs student mode (只看题目)；JSD token-level dense signal，4-8× token efficiency over GRPO；ICML 2026 accepted。alphaXiv: 128 likes。 |
+| [HDPO](../papers/2026-05-13_opd-survey-notes.md#hdpo) | HDPO: Hybrid Distillation Policy Optimization via Privileged Self-Distillation | [arXiv 2603.23871](https://arxiv.org/abs/2603.23871) | First: N/A; High-impact: N/A | A | 4 | — | N/A | Cliff prompts 处理；JSD distillation；数学证明 R=1 恢复最优 policy。OPSD 的直接扩展。 |
+| Self-Distilled-RLVR | Self-Distilled RLVR: Combining OPSD with Reinforcement Learning from Verifiable Rewards | [arXiv 2604.03128](https://arxiv.org/abs/2604.03128) | First: N/A; High-impact: N/A | A | 4 | — | N/A | OPSD 与 RLVR 结合；naive 合并不稳定，提出改进方案。 |
 | [OPSDC](../papers/2026-05-13_opd-survey-notes.md#opsdc) | OPSDC: On-Policy Self-Distillation for Reasoning Compression | [arXiv 2603.05433](https://arxiv.org/abs/2603.05433) | First: N/A; High-impact: N/A | A | 3 | 3 | N/A | 极简方案："be concise" instruction 做 teacher → token 减 57-59% + accuracy +9-16pp (Qwen3-8B/14B MATH-500)；机制未知但有效。 |
 | [OEL](../papers/2026-03-18_oel.md) | Online Experiential Learning for Language Models | [arXiv 2603.16856](https://arxiv.org/abs/2603.16856) | First: N/A; High-impact: N/A | A | 4 | 4 | [Fig.1](https://arxiv.org/html/2603.16856v1/figures/oel-overview.pdf) | 经验抽取后再做 on-policy 蒸馏显著优于直接吃原始轨迹（Sokoban consolidate 21.4 vs 7.8）；self-policy 经验优于更大教师经验。 |
 | [ExGRPO](../papers/2026-03-23_exgrpo.md) | ExGRPO: Learning to Reason from Experience | [arXiv 2510.02245](https://arxiv.org/abs/2510.02245) | First: U Macau; High-impact: Shanghai AI Lab | A | 4 | 4 | ![fig1](https://arxiv.org/html/2510.02245v1/x1.png) | 首个系统研究 RLVR 经验价值：中等难度+低熵轨迹是最优来源；bucketed replay + entropy selection 在 5 模型上 +3.5/+7.6 (ID/OOD)。 |
@@ -79,6 +83,16 @@ Forward vs Reverse KL 的选择、稳定性问题、failure mode 分析。
 | [TRT](../papers/2026-03-23_trt.md) | Test-time Recursive Thinking | [arXiv 2602.03094](https://arxiv.org/abs/2602.03094) | First: MSR; High-impact: MSR | B | 3 | 4 | N/A | 无外部反馈的 test-time 自改进：Generate-Select-Reflect；失败知识 > 成功知识，depth > breadth。 |
 | [ICRL](../papers/2026-03-12_icrl-tool-use.md) | In-Context Reinforcement Learning for Tool Use | [arXiv 2603.08068](https://arxiv.org/abs/2603.08068) | First: NUS; High-impact: UCB | A | 3 | 3 | N/A | Rollout 内 few-shot 课程退火替代 cold-start SFT；验证 RL-only 学稳工具调用。 |
 | [Golden-Goose](../papers/2026-05-13_opd-survey-notes.md#golden-goose) | Golden Goose: A Simple Trick to Synthesize Unlimited RLVR Tasks from Unverifiable Internet Text | [arXiv 2601.22975](https://arxiv.org/abs/2601.22975) | First: NVIDIA; High-impact: UW (Yejin Choi) | A | 3 | 3 | N/A | 将非验证文本转为 MCQ fill-in-the-middle → GooseReason-0.7M（70% effective rate vs ProRL 25%）；4B+GooseReason 逼近 Qwen3-30B-Instruct。重依赖 GPT-5 合成；MCQ≠生成能力。 |
+
+
+### Skill × OPD Intersection
+
+OPD 与 skill learning 的交叉：用 skill 作为 privileged info 做 self-distillation。
+
+| Alias (link to note) | Title | Source | Institution | Type | Rel | Qual | Figure 1 | Summary |
+|---|---|---|---|:---:|:---:|:---:|---|---|
+| Skill0 | Skill0: In-Context Agentic RL for Skill Internalization | [arXiv 2604.02268](https://arxiv.org/abs/2604.02268) | First: N/A; High-impact: N/A | A | 4 | — | N/A | 首次将 skill internalization 形式化为训练目标；Dynamic Curriculum 渐进移除 skill context，让 agent 内化 skills。 |
+| Skill-SD | Skill-Conditioned Self-Distillation for Multi-turn LLM Agents | [arXiv 2604.10674](https://arxiv.org/abs/2604.10674) | First: N/A; High-impact: N/A | A | 4 | — | N/A | Skill summarization 作为 dynamic privileged info；importance-weighted reverse-KL；Skill+OPD 交叉的代表工作。 |
 
 
 ### Industrial & Scaling
