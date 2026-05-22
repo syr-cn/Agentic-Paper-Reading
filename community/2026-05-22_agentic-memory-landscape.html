@@ -6,19 +6,19 @@
     <title>Agentic Memory 社区趋势情报 | 2026-05-22</title>
     <style>
         :root {
-            --bg: #0d1117;
-            --surface: #161b22;
-            --surface-2: #1c2128;
-            --border: #30363d;
-            --text: #e6edf3;
-            --text-muted: #8b949e;
+            --bg: #fafbfc;
+            --surface: #ffffff;
+            --surface-2: #f3f4f6;
+            --border: #e5e7eb;
+            --text: #1f2937;
+            --text-muted: #6b7280;
             --accent: #7c3aed;
-            --accent-light: #a78bfa;
-            --green: #3fb950;
-            --orange: #d29922;
-            --red: #f85149;
-            --blue: #58a6ff;
-            --pink: #f778ba;
+            --accent-light: #6d28d9;
+            --green: #059669;
+            --orange: #d97706;
+            --red: #dc2626;
+            --blue: #2563eb;
+            --pink: #db2777;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -83,11 +83,13 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 1.5rem;
-            transition: border-color 0.2s, transform 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
         }
         .card:hover {
             border-color: var(--accent);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
         }
         .card .card-header {
             display: flex;
@@ -145,6 +147,7 @@
             display: flex;
             gap: 1rem;
             align-items: flex-start;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
         }
         .person-card:hover { border-color: var(--green); }
         .person-avatar {
@@ -195,7 +198,7 @@
         }
 
         .implications {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(247, 120, 186, 0.05));
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05), rgba(219, 39, 119, 0.03));
             border: 1px solid var(--accent);
             border-radius: 12px;
             padding: 2rem;
