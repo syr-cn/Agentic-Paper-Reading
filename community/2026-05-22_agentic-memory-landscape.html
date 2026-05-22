@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Memory 社区趋势情报 | 2026-05-22</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-2: #1c2128;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #7c3aed;
+            --accent-light: #a78bfa;
+            --green: #3fb950;
+            --orange: #d29922;
+            --red: #f85149;
+            --blue: #58a6ff;
+            --pink: #f778ba;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 3rem;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--accent-light), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        header .subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        header .meta {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        header .meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+        section { margin-bottom: 3rem; }
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        section h3 {
+            font-size: 1.15rem;
+            color: var(--accent-light);
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.2rem;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        .card .author {
+            font-weight: 600;
+            color: var(--blue);
+            font-size: 0.9rem;
+        }
+        .card .stats {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .card .stats .hot { color: var(--red); }
+        .card .content {
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .card .tags {
+            margin-top: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .card .tag {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0.15rem 0.6rem;
+            font-size: 0.75rem;
+            color: var(--accent-light);
+        }
+        .card .date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        .person-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .person-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .person-card:hover { border-color: var(--green); }
+        .person-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .person-info .name { font-weight: 600; color: var(--green); font-size: 0.95rem; }
+        .person-info .role { font-size: 0.8rem; color: var(--text-muted); margin: 0.2rem 0; }
+        .person-info .why { font-size: 0.85rem; color: var(--text); line-height: 1.5; }
+
+        .consensus-block {
+            background: var(--surface);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+        .consensus-block h4 {
+            color: var(--accent-light);
+            margin-bottom: 0.6rem;
+            font-size: 1.05rem;
+        }
+        .consensus-block p, .consensus-block li {
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .consensus-block ul {
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        .consensus-block li { margin-bottom: 0.3rem; }
+        .consensus-block .evidence {
+            margin-top: 0.8rem;
+            padding: 0.8rem;
+            background: var(--surface-2);
+            border-radius: 8px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .implications {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(247, 120, 186, 0.05));
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .implications h3 { color: var(--pink); margin-bottom: 1rem; }
+        .implications ol { padding-left: 1.5rem; }
+        .implications li {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .implications li strong { color: var(--accent-light); }
+
+        .debate-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .debate-side {
+            background: var(--surface-2);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .debate-side.pro { border-left: 3px solid var(--green); }
+        .debate-side.con { border-left: 3px solid var(--orange); }
+        .debate-side h5 { font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .debate-side.pro h5 { color: var(--green); }
+        .debate-side.con h5 { color: var(--orange); }
+        .debate-side p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .timeline-item .time { font-size: 0.75rem; color: var(--text-muted); }
+        .timeline-item .event { font-size: 0.9rem; margin-top: 0.2rem; }
+
+        a { color: var(--blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .card-grid, .person-grid { grid-template-columns: 1fr; }
+            .debate-box { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🧠 Agentic Memory 社区趋势情报</h1>
+    <p class="subtitle">Harness · Memory Systems · HTML-as-Memory · Context Engineering</p>
+    <div class="meta">
+        <span>📅 2026-05-22</span>
+        <span>📡 数据源: Twitter/X</span>
+        <span>🔭 观察窗口: May 15–22, 2026</span>
+        <span>🔬 Curated by Twilight ✨</span>
+    </div>
+</header>
+
+<!-- ==================== Section 1: 热度讨论 ==================== -->
+<section id="hot-discussions">
+    <h2>🔥 一、高热度讨论</h2>
+
+    <h3>Tier 1: 现象级传播 (100K+ views)</h3>
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@cgtwts</span>
+                <span class="stats"><span class="hot">❤️ 1,411</span> 👁️ 263K</span>
+            </div>
+            <div class="content">
+                <strong>Karpathy: "10x engineers are normal. Real agentic engineers are 100x."</strong><br><br>
+                Context engineering is becoming the foundation of agentic software. Tool routing, memory systems, evals, and orchestrator-subagent workflows are the new stack.
+            </div>
+            <div class="tags">
+                <span class="tag">context engineering</span>
+                <span class="tag">Karpathy</span>
+                <span class="tag">agentic stack</span>
+            </div>
+            <div class="date">2026-05-10 · 原始来源: Karpathy @ Sequoia AI Ascent 2026</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@eng_khairallah1</span>
+                <span class="stats"><span class="hot">❤️ 923</span> 👁️ 163K</span>
+            </div>
+            <div class="content">
+                <strong>Anthropic 24分钟免费课：给 Agent 装上真正的记忆</strong><br><br>
+                "比 $500 vibe-coding 课有价值。" Anthropic 团队公开教如何用 Claude API 实现持久化、跨会话的 agent memory。暗示 Anthropic 认为记忆应该是开放基础设施，不是独占卖点。
+            </div>
+            <div class="tags">
+                <span class="tag">Anthropic</span>
+                <span class="tag">tutorial</span>
+                <span class="tag">persistent memory</span>
+            </div>
+            <div class="date">2026-05-16</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@akshay_pachaar</span>
+                <span class="stats"><span class="hot">❤️ 736</span> 👁️ 117K</span>
+            </div>
+            <div class="content">
+                <strong>"Code as Agent Harness" — 102页 Survey (Stanford + Meta + UIUC)</strong><br><br>
+                Code 不仅是 agent 的产出物，更是推理/行动/表征环境的<strong>介质</strong>。提出三层架构：code 作为 task 接口 → 长时执行的可靠机制（planning, memory, tool use, verification）→ 多 agent 通过共享 code artifacts 协调。<br><br>
+                核心结论：未来 agent 系统需要四个属性 — <strong>executable, inspectable, stateful, governed</strong>。<br><br>
+                引入 "evolution agents"：harness 本身是优化目标，收集 telemetry → 诊断失败 → 自动改进基础设施。
+            </div>
+            <div class="tags">
+                <span class="tag">survey</span>
+                <span class="tag">harness</span>
+                <span class="tag">Stanford</span>
+                <span class="tag">Meta</span>
+                <span class="tag">self-evolution</span>
+            </div>
+            <div class="date">2026-05-20 · <a href="https://x.com/i/status/2057046741535658372">原文链接</a></div>
+        </div>
+    </div>
+
+    <h3>Tier 2: 高影响讨论 (5K–40K views)</h3>
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@dr_cintas</span>
+                <span class="stats"><span class="hot">❤️ 626</span> 👁️ 36.8K</span>
+            </div>
+            <div class="content">
+                <strong>agentmemory: 给 Hermes、Claude Code、Codex 无限记忆</strong><br><br>
+                4,000+ GitHub stars。开源 memory server：记录 agent 行为 → AI 压缩 → 注入下一次会话。架构模拟人类记忆：Working → Episodic → Semantic → Procedural。搜索融合 keyword + vector + graph retrieval。LongMemEval-S: 95.2% top-5, 98.6% top-10。
+            </div>
+            <div class="tags">
+                <span class="tag">agentmemory</span>
+                <span class="tag">MCP</span>
+                <span class="tag">open-source</span>
+                <span class="tag">knowledge graph</span>
+            </div>
+            <div class="date">2026-05-15</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@tom_doerr</span>
+                <span class="stats"><span class="hot">❤️ 287</span> 👁️ 10.7K</span>
+            </div>
+            <div class="content">
+                <strong>Orchestrates AI coding agents with persistent memory</strong><br><br>
+                持久记忆编排多个 coding agent。agent 之间共享 memory 层，跨会话积累项目知识。
+            </div>
+            <div class="tags">
+                <span class="tag">orchestration</span>
+                <span class="tag">persistent memory</span>
+                <span class="tag">multi-agent</span>
+            </div>
+            <div class="date">2026-05-18</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@tom_doerr</span>
+                <span class="stats"><span class="hot">❤️ 182</span> 👁️ 7.3K</span>
+            </div>
+            <div class="content">
+                <strong>Self-correcting memory and context engineering for Claude Code</strong><br><br>
+                记忆不仅被动存储，还能自我修正：检测矛盾、衰减过时信息、主动更新。这是 "living memory" 而非 "log file"。
+            </div>
+            <div class="tags">
+                <span class="tag">self-correcting</span>
+                <span class="tag">Claude Code</span>
+                <span class="tag">memory decay</span>
+            </div>
+            <div class="date">2026-05-19</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@Alibaba_Qwen</span>
+                <span class="stats"><span class="hot">❤️ 195</span> 👁️ 29K</span>
+            </div>
+            <div class="content">
+                <strong>Self-Evolving in the Wild: 35h 连续自主执行</strong><br><br>
+                432 次 kernel 评估，1,158 次 tool calls。模型自主编写、编译、profiling 并迭代优化 Extend Attention Kernel — 达到 10x 加速。验证了 self-evolving agent 在实际系统中的可行性。
+            </div>
+            <div class="tags">
+                <span class="tag">Qwen</span>
+                <span class="tag">self-evolving</span>
+                <span class="tag">kernel optimization</span>
+                <span class="tag">autonomous</span>
+            </div>
+            <div class="date">2026-05-21</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@coinbureau</span>
+                <span class="stats"><span class="hot">❤️ —</span> 👁️ viral</span>
+            </div>
+            <div class="content">
+                <strong>CLAUDE.md: 144K stars, #1 on GitHub 28天</strong><br><br>
+                四条规则：Think before coding / Simplicity first / Surgical changes / Goal-driven。开发者称准确率从 ~65% 提升到 ~94%。但本质是 static context — 社区已在讨论如何从 static rules 进化到 dynamic memory。
+            </div>
+            <div class="tags">
+                <span class="tag">CLAUDE.md</span>
+                <span class="tag">144K stars</span>
+                <span class="tag">static context</span>
+            </div>
+            <div class="date">2026-05-22</div>
+        </div>
+    </div>
+
+    <h3>Tier 3: 研究向深度讨论</h3>
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@sheriyuo</span>
+                <span class="stats"><span class="hot">❤️ 29</span> 👁️ 3.3K</span>
+            </div>
+            <div class="content">
+                <strong>Agent self-evolve 的核心矛盾</strong><br><br>
+                "Agent 的 self-evolve 需要 memory 来作为 exploration + reflection 的载体，只不过这个 memory 需要研究的空间还是相当的多，到底怎么才能尽可能无损地在超长上下文场景下，还能 recall 那些之前的 trajectory"<br><br>
+                直接指出：reflexion 框架在上下文不超时 work，超了就做有损压缩。拿 Claude 反复修 bug 不如直接重构。
+            </div>
+            <div class="tags">
+                <span class="tag">self-evolve</span>
+                <span class="tag">long-context</span>
+                <span class="tag">trajectory recall</span>
+                <span class="tag">compression</span>
+            </div>
+            <div class="date">2026-05-18 · 🎯 直接相关你的研究</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@bryanklow (NUS/MIT)</span>
+                <span class="stats"><span class="hot">❤️ 9</span> 👁️ 114</span>
+            </div>
+            <div class="content">
+                <strong>MeMo: Memory as a Model</strong><br><br>
+                训练独立的"记忆模型"而非修改主 LLM。5步数据合成管道捕获 explicit facts + implicit relationships + cross-document connections。优于 RAG（抗噪声），优于 fine-tuning（无灾难遗忘）。Fixed inference cost，与 corpus 大小无关。<br><br>
+                在 BrowseComp-Plus, NarrativeQA, MuSiQue 上超越 BM25/NV-Embed-V2/HippoRAG2，NarrativeQA +27%。
+            </div>
+            <div class="tags">
+                <span class="tag">MeMo</span>
+                <span class="tag">MIT</span>
+                <span class="tag">NUS</span>
+                <span class="tag">memory model</span>
+                <span class="tag">model merging</span>
+            </div>
+            <div class="date">2026-05-22 · <a href="https://x.com/i/status/2057652729384956332">原文</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="author">@jiqizhixin (机器之心)</span>
+                <span class="stats"><span class="hot">❤️ 43</span> 👁️ 2.2K</span>
+            </div>
+            <div class="content">
+                <strong>MEMO (MIT + A*STAR + NUS + Liquid AI)</strong><br><br>
+                "Your AI could learn new information without ever retraining its core brain!" — 将新知识存入独立 memory model，如同给锁定的电脑添加文件。避免遗忘旧信息，兼容任何 LLM（含闭源），检索速度不随数据量增长。
+            </div>
+            <div class="tags">
+                <span class="tag">MEMO</span>
+                <span class="tag">knowledge injection</span>
+                <span class="tag">plug-and-play</span>
+            </div>
+            <div class="date">2026-05-21</div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Section 2: 关键人物 ==================== -->
+<section id="key-people">
+    <h2>👤 二、影响力人物 & 敏锐视角</h2>
+
+    <div class="person-grid">
+        <div class="person-card">
+            <div class="person-avatar">🔁</div>
+            <div class="person-info">
+                <div class="name">@tom_doerr</div>
+                <div class="role">高产 Builder / Agent Memory 话题节点人</div>
+                <div class="why">一周内 4 条高热帖（55–287❤️），覆盖 self-correcting memory、30 个 LLM memory notebook、persistent orchestration、Claude Code background agent with memory。是 agentic memory 工具生态的核心传播者。</div>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="person-avatar">📄</div>
+            <div class="person-info">
+                <div class="name">@akshay_pachaar</div>
+                <div class="role">Research-oriented / Stanford+Meta 关联</div>
+                <div class="why">发布 "Code as Agent Harness" 102页 survey 的深度解读（736❤️），明确提出 agent harness 理论框架。同时发布了配套 article 覆盖 orchestration loop / tools / memory / context management。学术-工程桥梁型人物。</div>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="person-avatar">🧪</div>
+            <div class="person-info">
+                <div class="name">@sheriyuo</div>
+                <div class="role">中文研究圈 / Agent Self-Evolve 方向</div>
+                <div class="why">精准指出 memory 作为 self-evolve 载体的核心挑战："超长上下文下如何无损 recall trajectory"。将 reflexion 的局限性和 memory 需求直接关联。<strong>视角与你的研究高度重合。</strong></div>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="person-avatar">🏗️</div>
+            <div class="person-info">
+                <div class="name">@neethanwu</div>
+                <div class="role">反思型 Builder / 格式论争核心声音</div>
+                <div class="why">"HTML is NEVER the new markdown" — 提出清晰的三层通信分类学：MD(agent→agent), HTML(agent→human), JSON(machine boundaries)。打破"HTML 替代 MD"的简单叙事。</div>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="person-avatar">🎬</div>
+            <div class="person-info">
+                <div class="name">@FeitengLi</div>
+                <div class="role">中文 AI 圈 KOL</div>
+                <div class="why">对 Karpathy Sequoia talk 做了最深度的中文解读（Software 1.0→2.0→3.0 范式、agentic engineering vs vibe coding、"jagged intelligence"概念）。信噪比高。</div>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="person-avatar">🎨</div>
+            <div class="person-info">
+                <div class="name">@OmriBuilds / @QingQ77</div>
+                <div class="role">Claude Code 生态观察者 + Agent-HTML 创建者</div>
+                <div class="why">@OmriBuilds 最早观察到 "Claude Code users quietly moving from Markdown to HTML"；@QingQ77 创建了 Agent-HTML 项目——语义化 .agent.html 文档规范，agent 只写内容结构，系统自动渲染。</div>
+            </div>
+        </div>
+
+        <div class="person-card">
+            <div class="person-avatar">🧬</div>
+            <div class="person-info">
+                <div class="name">@YuLin807</div>
+                <div class="role">中文开发者 / 跨平台 Memory 实践者</div>
+                <div class="why">用 Graphiti + FalkorDB + Gemini API 实现知识图谱记忆层，支持 Hermes / Claude Code / Codex / 网页端同步维护。MCP 全接入的实际案例。</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Section 3: 社区共识 ==================== -->
+<section id="consensus">
+    <h2>🎯 三、社区共识 & 趋势</h2>
+
+    <div class="consensus-block">
+        <h4>共识1: Memory 是 Agent 的核心瓶颈 — 已从研究问题变为工程问题</h4>
+        <ul>
+            <li><strong>agentmemory</strong> 一周爆到 14.9K stars — 需求真实且紧迫</li>
+            <li>架构共识收敛到 <strong>人类记忆类比</strong>：Working → Episodic → Semantic → Procedural</li>
+            <li><strong>MCP</strong> 成为 memory 层的事实标准接口（Claude Code / Cursor / Codex / Hermes 全接入）</li>
+            <li>从 "每次重新解释项目" 的痛点出发，但解决方案已超越简单的 context injection</li>
+        </ul>
+        <div class="evidence">
+            证据：@techwith_ram "Most coding agents forget everything once the session ends"、@WWTLitee 中文圈 14.9K stars 报道、@dr_cintas 36K views 推荐帖
+        </div>
+    </div>
+
+    <div class="consensus-block">
+        <h4>共识2: Context Engineering > Prompt Engineering — 新范式已确立</h4>
+        <ul>
+            <li>Karpathy 明确定义：context engineering = tool routing + memory systems + evals + orchestrator-subagent workflows</li>
+            <li>CLAUDE.md（144K stars）是 <strong>v1 (static context)</strong>，社区已在讨论向 <strong>v2 (dynamic + self-correcting memory)</strong> 进化</li>
+            <li>关键洞察："GPT-3.5 + good harness > GPT-4 + bad harness" — harness 是真正的差异因子</li>
+            <li>Multi-agent 系统中：topology complexity 与 infrastructure quality 负相关（better shared state → simpler coordination）</li>
+        </ul>
+        <div class="evidence">
+            证据：@_vmlops "your agent isn't failing because the model is bad... it's failing because there's no harness around it"、@RSP_ER_AI "65%→94% accuracy with CLAUDE.md strategy"
+        </div>
+    </div>
+
+    <div class="consensus-block">
+        <h4>共识3: HTML-as-Memory — 不是替代，是通信对象分层</h4>
+        <div class="debate-box">
+            <div class="debate-side pro">
+                <h5>✅ 正方：HTML 作为 Agent Artifact</h5>
+                <p>@OmriBuilds: "Specs, PR reviews, reports, prototypes — HTML emerging as the new format for agent artifacts."<br><br>@QingQ77: Agent-HTML 项目 — 语义化结构+自动渲染，解决 markdown 文档过于冗长的问题。</p>
+            </div>
+            <div class="debate-side con">
+                <h5>⚠️ 反方：Format follows audience</h5>
+                <p>@neethanwu: "Format follows audience. They were never in the same category."<br><br>MD = agent→agent (text compounds, no tag overhead)<br>HTML = agent→human (dense, interactive, visual)<br>JSON = machine boundaries</p>
+            </div>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            <strong>收敛结论：</strong>不是"HTML 替代 MD"，而是 agent 通信生态分化为三层。HTML 的兴起反映的是"agent 产物需要被人类消费"的需求增长。对 memory 系统而言，内部表征仍以结构化文本/JSON 为主，但面向用户的 memory report/dashboard 可以用 HTML 增强可读性。
+        </p>
+    </div>
+
+    <div class="consensus-block">
+        <h4>共识4: Harness Self-Evolution 是下一个前沿</h4>
+        <ul>
+            <li>Stanford survey 提出 <strong>"evolution agents"</strong>：harness 本身作为优化目标</li>
+            <li>Qwen 实证：35h 连续执行，agent 自主迭代优化 kernel 达到 10x 加速</li>
+            <li>@sheriyuo 指出核心开放问题：<strong>memory 是 self-evolve 的载体</strong>，但超长上下文下如何无损 recall 旧 trajectory？</li>
+            <li>这暗示 memory 研究的下一阶段不只是"存什么"，更是"怎么在进化过程中不丢失关键经验"</li>
+        </ul>
+        <div class="evidence">
+            关键论文：Stanford "Code as Agent Harness" survey / Qwen Self-Evolving blog / Search-E1 self-distillation pipeline
+        </div>
+    </div>
+
+    <div class="consensus-block">
+        <h4>共识5: Memory as a Model (MeMo) — 学术新范式</h4>
+        <ul>
+            <li>MIT+NUS+Liquid AI 提出：训练独立 <strong>memory model</strong>，frozen executive LLM 通过 3-stage protocol 查询</li>
+            <li>解耦 knowledge 和 reasoning：训练一次小模型存知识，任意前沿 LLM 可查询</li>
+            <li>优势：抗检索噪声（RAG -6.22%，MeMo 不变）、无灾难遗忘、fixed inference cost、兼容闭源 API</li>
+            <li>通过 model merging 实现 continual integration：33% compute savings</li>
+        </ul>
+        <div class="evidence">
+            BrowseComp-Plus / NarrativeQA (+27% with Gemini-3-Flash) / MuSiQue 三个 benchmark 全面超越 RAG baselines
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Section 4: 事件时间线 ==================== -->
+<section id="timeline">
+    <h2>📅 四、一周事件时间线</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="time">May 10</div>
+            <div class="event"><strong>Karpathy @ Sequoia AI Ascent:</strong> "From Vibe Coding to Agentic Engineering" — context engineering 概念正式爆发（26.3万 views）</div>
+        </div>
+        <div class="timeline-item">
+            <div class="time">May 15</div>
+            <div class="event"><strong>agentmemory 开源发布</strong> — 4K→14.9K stars，MCP 协议接入所有主流 coding agent</div>
+        </div>
+        <div class="timeline-item">
+            <div class="time">May 16</div>
+            <div class="event"><strong>Anthropic 免费 Agent Memory 课程</strong>上线（923❤️ / 16.4万 views）；@OmriBuilds 观察到 HTML-as-Artifact 趋势</div>
+        </div>
+        <div class="timeline-item">
+            <div class="time">May 17</div>
+            <div class="event"><strong>Agent-HTML 项目</strong>发布 — 语义化 .agent.html 规范；Anthropic Claude Code 2h 完整培训视频</div>
+        </div>
+        <div class="timeline-item">
+            <div class="time">May 18</div>
+            <div class="event"><strong>@sheriyuo</strong> 发布 memory→self-evolve 核心观点；@tom_doerr 分享 persistent memory orchestration（287❤️）</div>
+        </div>
+        <div class="timeline-item">
+            <div class="time">May 19</div>
+            <div class="event"><strong>@neethanwu</strong> "HTML is NEVER the new markdown" 反驳帖；@tom_doerr self-correcting memory（182❤️）</div>
+        </div>
+        <div class="timeline-item">
+            <div class="time">May 20</div>
+            <div class="event"><strong>"Code as Agent Harness" 102页 survey</strong> 传播（736❤️ / 11.7万 views）</div>
+        </div>
+        <div class="timeline-item">
+            <div class="time">May 21</div>
+            <div class="event"><strong>Qwen self-evolving demo</strong>（35h 连续执行）；CLAUDE.md 140K stars 讨论；MeMo 论文（MIT+NUS）；EvalScope Agent Evaluation Mode 发布</div>
+        </div>
+        <div class="timeline-item">
+            <div class="time">May 22</div>
+            <div class="event"><strong>MeMo 论文完整 thread</strong>（@bryanklow）；agentmemory 持续发酵；CLAUDE.md 达到 144K stars；本报告生成 ✨</div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== Section 5: 研究启示 ==================== -->
+<section id="implications">
+    <h2>💡 五、对研究的启示</h2>
+    <div class="implications">
+        <h3>Research Opportunities Identified</h3>
+        <ol>
+            <li>
+                <strong>Memory Evaluation Harness 是蓝海</strong><br>
+                目前 LongMemEval 被引用最多，但社区认为不够。@PeterJ_Medina 展示"换个 harness 从 3.3%→31.8%"——evaluation 本身的设计空间巨大。这是你可以建立 benchmark 话语权的机会。
+            </li>
+            <li>
+                <strong>Self-Evolving Agent 的 Memory 问题未解</strong><br>
+                @sheriyuo 精确描述的问题正是你的方向：agent 需要 memory 作为 exploration + reflection 载体，但超长上下文下如何无损 recall 旧 trajectory？现有方案（reflexion, agentmemory）都在做"有损压缩"，理论上的无损方案尚未被提出。
+            </li>
+            <li>
+                <strong>从 Static Context (CLAUDE.md) 到 Dynamic Memory 的演进路径</strong><br>
+                CLAUDE.md 144K stars 证明了静态 context 的价值，但社区明确认为这是 v1。你的研究可以定义 v2 是什么样的——self-correcting、decay-aware、contradiction-resolving 的 dynamic memory system。
+            </li>
+            <li>
+                <strong>MeMo "Memory as a Model" 与你方向的交叉</strong><br>
+                将 memory 从检索问题重新定义为模型训练问题。与 agentic memory 的交叉点：能否训练一个专门的 memory model 来服务 agent 的 episodic/semantic recall？
+            </li>
+            <li>
+                <strong>实践↔学术的桥梁机会</strong><br>
+                agentmemory 等工程项目已在用 episodic/semantic/procedural 分层，但缺乏理论支撑。你的研究可以反向指导——什么时候该压缩？什么必须保留？decay function 怎么设计？这些工程经验可以成为你论文的 motivation 和 evaluation scenario。
+            </li>
+        </ol>
+    </div>
+</section>
+
+<!-- ==================== Section 6: 关键链接 ==================== -->
+<section id="links">
+    <h2>🔗 六、关键资源链接</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="content">
+                <strong>论文 & Survey</strong>
+                <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.85rem;">
+                    <li><a href="https://x.com/i/status/2057046741535658372">Code as Agent Harness (102p survey)</a></li>
+                    <li><a href="https://x.com/i/status/2057652729384956332">MeMo: Memory as a Model</a></li>
+                    <li><a href="https://x.com/i/status/2057273858219213163">MEMO (MIT+A*STAR+NUS+Liquid AI)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <strong>工具 & 项目</strong>
+                <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.85rem;">
+                    <li><a href="https://x.com/i/status/2055355998139715747">agentmemory (14.9K stars)</a></li>
+                    <li><a href="https://x.com/i/status/2056157316005740878">Agent-HTML (.agent.html spec)</a></li>
+                    <li><a href="https://x.com/i/status/2057454417167679575">EvalScope Agent Evaluation Mode</a></li>
+                    <li><a href="https://x.com/i/status/2057311790279909731">Graphiti+FalkorDB Memory Layer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="content">
+                <strong>教程 & 课程</strong>
+                <ul style="margin-top: 0.5rem; padding-left: 1.2rem; font-size: 0.85rem;">
+                    <li><a href="https://x.com/i/status/2055672548227273044">Anthropic Agent Memory 免费课 (24min)</a></li>
+                    <li><a href="https://x.com/i/status/2055940008926990447">Claude Agent 2h 完整培训</a></li>
+                    <li><a href="https://x.com/i/status/2056767996123644244">30 Runnable Notebooks for LLM Agent Memory</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Generated by Twilight ✨ for Master's Agentic Memory Research</p>
+    <p>Data source: Twitter/X via opencli · Window: May 15–22, 2026</p>
+    <p>Part of <a href="https://github.com/syr-cn/Agentic-Paper-Reading">SYRs-Memory-Paper-Reading</a></p>
+</footer>
+
+</body>
+</html>
