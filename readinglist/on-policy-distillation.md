@@ -34,6 +34,14 @@ On-Policy Distillation (OPD) 是介于纯 SFT 和纯 RL 之间的训练范式：
 
 ---
 
+### Parameter-Space Geometry & Mechanistic Analysis
+
+OPD 在参数空间的几何特征与机制性分析。
+
+| Alias (link to note) | Title | Source | Institution | Type | Rel | Qual | Figure 1 | Summary |
+|---|---|---|---|:---:|:---:|:---:|---|---|
+| [OPD-Geometry](../papers/2026-06-10_opd-geometry.md) | On the Geometry of On-Policy Distillation | [arXiv 2606.07082](https://arxiv.org/abs/2606.07082) | First: HKUST (Yi R. Fung group); High-impact: HKUST + UT Austin + ZJU | A | 4 | 4 | ![fig1](https://arxiv.org/html/2606.07082v1/x1.png) | 首次刻画 OPD 的参数空间几何——"relaxed off-principal + subspace locking"；stable rank ~20-30 平坦；rank-16 子空间 functionally sufficient；Three-Gate 框架统一 SFT/OPD/RLVR。alphaXiv: 59 likes, HF ⬆️60。 |
+
 ### OPD ↔ RL Unification
 
 理论证明 OPD = dense KL-constrained RL，打通两个范式的技术栈。
