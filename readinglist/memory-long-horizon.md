@@ -16,6 +16,8 @@
 | [PEEK](../papers/2026-05-21_peek.md) | PEEK: Context Map as an Orientation Cache for Long-Context LLM Agents | [arXiv 2605.19932](https://arxiv.org/abs/2605.19932) | First: MIT CSAIL; High-impact: MIT + Stanford (Omar Khattab) | B | 5 | 4 | N/A（HTML 不可用） | 提出 "context map" 作为 agent 对 recurring context 的 orientation cache（Distiller→Cartographer→Evictor）；OOLONG +9.3–15.0 over ACE (SOTA prompt learning)，省 1.7–5.8× cost；填补 "Active × External Context State" 设计空白。HF ⬆️4。 |
 | [AgentMemSurvey](../papers/2026-03-08_agent-memory-survey.md) | Memory for Autonomous LLM Agents: Mechanisms, Evaluation, and Emerging Frontiers | [arXiv 2603.07670](https://arxiv.org/abs/2603.07670) | First: HKRIT; High-impact: N/A | C | 5 | 4 | N/A | 2026 唯一 agent memory 专题 survey；3D taxonomy (temporal×substrate×control) + write–manage–read 形式化；10 open challenges（dual-buffer consolidation, causal retrieval, foundation model for memory 等）。alphaXiv: 21 likes。 |
 
+| [AgenticSTS](../papers/2026-07-04_agenticsts.md) | AgenticSTS: A Bounded-Memory Testbed for Long-Horizon LLM Agents | [arXiv 2607.02255](https://arxiv.org/abs/2607.02255) | First: Alaya Lab (盛大); High-impact: SJTU + USTC | C | 5 | 4 | [Fig.1](https://raw.githubusercontent.com/AlayaLab/AgenticSTS/main/assets/fig1-overview.png) | 将 agent memory 形式化为 bounded typed contract（5层L1-L5 per-decision composition）；Slay the Spire 2 testbed 上 L5(skills) 提供最大增益 3/10→6/10（directional）；释放 298 trajectories + frozen snapshots。alphaXiv: 5 likes / HF ⬆️40。 |
+
 ### Memory Evaluation
 
 | Alias (link to note) | Title | Source | Institution | Type | Rel | Qual | Figure 1 | Summary |
